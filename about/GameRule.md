@@ -111,6 +111,6 @@
             丰收藤蔓的根或节点，当其周围4个地块都有节点，且这些节点存在枝条与该根或节点相连时，就会结出果实；
             丰收藤蔓的蔓延几率较高:
                 high @-type-4 @-type-3 #-type-1  absolute
-                medium #-type-4 #-type-3 abolute
+                medium #-type-3 abolute
                 low #-type-2 #-type-5 absolute              
             丰收藤蔓的生成几率中等； 
