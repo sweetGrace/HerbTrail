@@ -95,7 +95,7 @@
             障碍荆棘的蔓延几率较高:
                 high type-4 type-3 absolute
                 medium type-2 type-1 absolute
-                low type type-0 --
+                low type-0 --
             障碍荆棘的生成几率较低；
 
         3-3-3 丰收灌木 [harvest bush]:
@@ -110,6 +110,7 @@
         3-3-4 丰收藤蔓 [harvest vine]:
             丰收藤蔓的根或节点，当其周围4个地块都有节点，且这些节点存在枝条与该根或节点相连时，就会结出果实；
             丰收藤蔓的蔓延几率较高:
-                high type-4 type-3 #-type-1  absolute
+                high @-type-4 @-type-3 #-type-1  absolute
+                medium #-type-4 #-type-3 abolute
                 low #-type-2 #-type-5 absolute              
             丰收藤蔓的生成几率中等； 
