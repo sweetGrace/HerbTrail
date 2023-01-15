@@ -55,7 +55,7 @@
     3-2 植物行为
 
         3-2-1 蔓延 [spread]：根或者节点会往其枝条指向的方向生成节点，没有枝条就不会蔓延；
-            3-2-1-1 蔓延类型 [spread type]：↑→↓←代表枝条指向，@代表根,#代表节点，格式为 [@|#] -[ [0-4][,↑]?[,→]?[,↓]?[,←]? ] 或简略表示为[@|#]? -[ [type]-[0-5] ]
+            3-2-1-1 蔓延类型 [spread type]：↑→↓←代表枝条指向，@代表根,#代表节点，格式为 [@|#] -[ [0-4][,↑]?[,→]?[,↓]?[,←]? ] 或简略表示为[@|#]? -[ [type]-[1-5] ]
 
             i) type-1:
                 ex:  #-[1,↑]
@@ -65,7 +65,7 @@
                 ex:  #-[3,↑,→,↓]  #-[3,↑,→,←]
             iv) type-4:
                 ex:  @-[4,↑,→,↓,←]
-            v) type-5/0:
+            v) type-5:
                 ex:  #-[0]
 
             3-2-1-2 蔓延规则：格式为 [0.0-1.0|absolute|high|medium|low][spread type]+[0.0-1.0|absolute|high|medium|low|--] 第一个数值代表生成蔓延类型的概率，第二个数值代表下回合蔓延的概率 
@@ -95,7 +95,7 @@
             障碍荆棘的蔓延几率较高:
                 high type-4 type-3 absolute
                 medium type-2 type-1 absolute
-                low type-0 --
+                low type type-0 --
             障碍荆棘的生成几率较低；
 
         3-3-3 丰收灌木 [harvest bush]:
@@ -104,13 +104,12 @@
             丰收灌木蔓延的地块周围一圈不能有其他植物存在，否则不会蔓延；
             丰收灌木的蔓延几率极低:
                 high type-2 type-1 absolute
-                medium type-0 type-4 type-3 absolute
+                medium type-5 type-4 type-0 absolute
             丰收灌木的生成几率中等；
 
         3-3-4 丰收藤蔓 [harvest vine]:
             丰收藤蔓的根或节点，当其周围4个地块都有节点，且这些节点存在枝条与该根或节点相连时，就会结出果实；
             丰收藤蔓的蔓延几率较高:
-                high @-type-4 @-type-3 #-type-1  absolute
-                medium #-type-3 abolute
-                low #-type-2 #-type-0 absolute              
+                high type-4 type-3 #-type-1  absolute
+                low #-type-2 #-type-5 absolute              
             丰收藤蔓的生成几率中等； 
