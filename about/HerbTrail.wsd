@@ -1,4 +1,17 @@
 @startuml HerbTrail
+class tiles={
+    bool is_in_shadow
+    int fertility
+    vector2 axis
+    bool is_planted
+    bool is_picked
+}
+class seawater={
 
+}
+class plain={
+    
+}
 
 @enduml
+
