@@ -1,17 +1,87 @@
 @startuml HerbTrail
-class tiles={
-    bool is_in_shadow
-    int fertility
-    vector2 axis
+enum TerrainType{
+    Terrain
+    Seawater
+}
+abstract class Terrain{
+    TerrainType type
     bool is_planted
-    bool is_picked
+    bool is_inshadow
+    int fertility
+    Vector2 position
 }
-class seawater={
 
+class Seawater{
 }
-class plain={
+class Plain{
     
 }
+Seawater--|>Terrain
+Plain--|>Terrain
 
+enum PlantType{
+    platformTree
+    obstacleThorn
+    harvestBush
+    harvestVine
+}
+enum PlantOrganType{
+    root
+    branch
+    fruit
+}
+abstract class PlantOrgan{
+    +{field}static List<(PlantType type, List<int> probabilitySet) spreadProbability
+    #PlantType type
+    List<PlantOrgan> sproutOrgans
+    #PlantOrgan fatherNode
+    List<Vector2> twigDirections
+    #bool is_planted
+    #bool is_withered
+    int resouces
+    int layer
+    Vector2 position
+    -abstract List<PlantOrgan> _SpreadPlant()
+    -abstract List<PlantOrgan> _ProduceFruit()
+}
+
+
+
+class root{
+
+}
+class branch{
+
+}
+class fruit{
+    int period
+    int dayCount
+
+}
+root --|> PlantOrgan
+branch --|> PlantOrgan
+fruit --|> PlantOrgan
+
+
+
+
+Terrain --o Lattice
+PlantOrgan --o Lattice
+
+class Lattice{
+    #Terrain terrain
+    #List<PlantOrgan> plantOrgans
+    #vector2 position
+    
+
+}
+class Map{
+    -List<Lattice> latticeMap
+    -void _SpreadSea()
+    -void _ClearWithering()
+    -void _HarvestPlant(Lattice lattice)
+}
+
+Lattice --o Map
 @enduml
 

@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638094479734388110
-    m_Hash: 790730124
+      ticks: 638094498108296822
+    m_Hash: 1188038407
   m_LockFileStatus:
     m_FilePath: D:/github project/HerbTrail/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 638094479778956357
-    m_Hash: 2270363548
+      ticks: 638094498108306776
+    m_Hash: 1155379866
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_PackageAssets:
