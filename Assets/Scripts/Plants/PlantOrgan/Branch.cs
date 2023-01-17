@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Branch : PlantOrgan
 {
-    // Start is called before the first frame update
+    public Branch(int Layer, int PlantId): base(Layer, PlantId){
+
+    }
 
 }

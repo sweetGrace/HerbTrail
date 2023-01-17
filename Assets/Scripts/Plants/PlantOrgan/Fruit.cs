@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Fruit : PlantOrgan
 {
-    
     public int dayCount;
     public int periodCount;
     private (List<Vector2>, List<PlantOrgan>) _ProduceFruit();
+    public Fruit(int Layer, int PlantId): base(Layer, PlantId){    }
 }

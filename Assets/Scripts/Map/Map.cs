@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
-    public List<Plant> plantSet;
+    public Plant[] plantSet;
     public Lattice[] latticeMap;
     private void _SpreadSea();
     private void _ClearWithering();
