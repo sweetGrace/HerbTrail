@@ -1,5 +1,6 @@
 public enum PlantType{
-    root,
-    branch,
-    fruit
+    platformTree,
+    obstacleThorn,
+    harvestBushd,
+    harvestVine
 }

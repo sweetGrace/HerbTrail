@@ -6,7 +6,10 @@ public abstract class PlantOrgan : MonoBehaviour
 {
     // Start is called before the first frame update
     private static int _IdCount = 0;
-    public static List<(PlantType, List<float>)> spreadProbability;
+    public static List<(PlantType, List<float>)> spreadProbability = new List<(PlantType, List<float>)> {
+        
+
+    };
     public int Id { get; private set; }
     public int plantId { get; private set; }
     public PlantType type {get; private set;}

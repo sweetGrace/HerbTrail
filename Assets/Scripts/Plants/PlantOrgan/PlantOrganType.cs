@@ -1,6 +1,5 @@
-public enum PlantOrganType{
-    platformTree,
-    obstacleThorn,
-    harvestBushd,
-    harvestVine
+public enum PlantOrganType{  
+    root,
+    branch,
+    fruit
 }
