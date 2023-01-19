@@ -19,5 +19,20 @@ public class Ground : MonoBehaviour
             fertilityDegree += dif;
     }
 
+    public void TurnPlain()//°Ñground±ä³ÉPlain
+    {
+        type = GroundType.plain;
+        fertilityDegree = 0;
+        isPlanted = false;
+        isInShadow = false;
 
+    }
+
+    public void TurnWater()
+    {
+        type = GroundType.seawater;
+        fertilityDegree = 0;
+        isPlanted = false;
+        isInShadow = false;
+    }
 }

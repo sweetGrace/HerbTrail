@@ -11,6 +11,13 @@ public class Map : MonoBehaviour
         for(int i = 1; i < 512; i++){
             for(int j = 1; j <512; j++){
 
+                if (latticeMap[i, j].IsWater()==0) {
+                    //第一种与第二种
+                    if (latticeMap[i - 1, j].IsWater() + latticeMap[i + 1, j].IsWater() + latticeMap[i, j - 1].IsWater() + latticeMap[i, j + 1].IsWater() >= 2)
+                    {
+                        //未完成
+                    }
+                }
             }
         }
     }
@@ -21,9 +28,62 @@ public class Map : MonoBehaviour
             lattice.ground.AddFertilityDegree(witheringList.Count);
         }
     }
-    private void _HarvestPlant(Lattice lattice, List<PlantOrgan> organs){
+    private void _HarvestPlant(Lattice lattice, PlantOrgan morgan=null){
+        bool flag = true;//用来判断是否有第二层落下
+        if (lattice == morgan.lattice) {
+            if (morgan)
+            {
+                if (morgan.layer == 2 || morgan.OrganType == PlantOrganType.fruit)
+                {
+                    morgan.Harvest();
+                }
+                else
+                {
+                    foreach (var organ in lattice.plantOrgans)
+                    {
+                        if (organ.layer == 2 && (organ.OrganType == PlantOrganType.root || organ.OrganType == PlantOrganType.branch))//第二层且为根或者branch
+                        {
+                            organ.Harvest();
+                            flag = false;
+                        }
 
+                    }
+                    if (flag == true)
+                    {
+                        foreach (var organ in lattice.plantOrgans)
+                        {
+                            organ.Harvest();
+                        }
+                    }
+                }
+            }
+            else//harvest whole lattice
+            {
+                foreach (var organ in lattice.plantOrgans)
+                {
+                    if (organ.layer == 2 && (organ.OrganType == PlantOrganType.root || organ.OrganType == PlantOrganType.branch))//第二层且为根或者branch
+                    {
+                        organ.Harvest();
+                        flag = false;
+                    }
+
+                }
+                if (flag == true)
+                {
+                    foreach (var organ in lattice.plantOrgans)
+                    {
+                        organ.Harvest();
+                    }
+                }
+            }
+                //
+        }
+        else
+        {
+            Debug.LogError("Lattice and organ not match");
+        }
     } 
+
     // Start is called before the first frame update
     void Start()
     {

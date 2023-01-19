@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fruit : PlantOrgan
 {
-    public new static PlantOrganType OrganType {get; private set;} = PlantOrganType.fruit;
+    public new PlantOrganType OrganType {get; private set;} = PlantOrganType.fruit;
     
     public new static List<(PlantType, int)> resourcesList = new List<(PlantType, int)> {
         (PlantType.platformTree, 0),
@@ -44,5 +44,8 @@ public class Fruit : PlantOrgan
         }
         
     }
-
+    new public void Harvest() {
+        //”…jyhÕÍ≥…
+        Debug.LogError("fruit's harvest() is incomplete");
+    }
 }

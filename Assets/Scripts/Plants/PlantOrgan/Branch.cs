@@ -10,7 +10,7 @@ public class Branch : PlantOrgan
         (PlantType.harvestBush, 0),
         (PlantType.harvestVine, 0)
     };
-    public new static PlantOrganType OrganType {get; private set;} = PlantOrganType.branch;
+    public new PlantOrganType OrganType {get; private set;} = PlantOrganType.branch;
     public Branch(int Layer, int PlantId, PlantOrgan FatherNode): base(Layer, PlantId, FatherNode){}
 
 }
