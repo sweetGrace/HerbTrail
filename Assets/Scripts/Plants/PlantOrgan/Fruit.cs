@@ -6,6 +6,12 @@ public class Fruit : PlantOrgan
 {
     public new static PlantOrganType OrganType {get; private set;} = PlantOrganType.fruit;
     
+    public new static List<(PlantType, int)> resourcesList = new List<(PlantType, int)> {
+        (PlantType.platformTree, 0),
+        (PlantType.obstacleThorn, 0),
+        (PlantType.harvestBush, 0),
+        (PlantType.harvestVine, 0)
+    };
     public static int[] matureNutrient {get; private set;} = new int[(int)PlantType.length]{100, 100, 100, 100};//correspondence with PlantType
     public static int[] rotNutrient {get; private set;} = new int[(int)PlantType.length]{200, 200, 200, 200};//correspondence with PlantType
     public static int[] baseGrowNutrient {get; private set;} = new int[(int)PlantType.length]{25, 25, 25, 25};//correspondence with PlantType

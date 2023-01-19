@@ -1,5 +1,5 @@
 public enum GroundType{
-    Terrain,
-    Seawater,
+    plain,
+    seawater,
     length
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-public abstract class PlantOrgan : MonoBehaviour
+public abstract class PlantOrgan : MonoBehaviour, IRound
 {
 
     private static int _IdCount = 0;
@@ -13,10 +13,10 @@ public abstract class PlantOrgan : MonoBehaviour
         (PlantType.platformTree, new List<int>{})
     };
     public static List<(PlantType, int)> resourcesList = new List<(PlantType, int)> {
-        (PlantType.harvestBush, 0),
-        (PlantType.harvestVine, 0),
+        (PlantType.platformTree, 0),
         (PlantType.obstacleThorn, 0),
-        (PlantType.platformTree, 0)
+        (PlantType.harvestBush, 0),
+        (PlantType.harvestVine, 0)
     };
     public int Id { get; private set; }
     public int plantId { get; private set; }
@@ -27,6 +27,7 @@ public abstract class PlantOrgan : MonoBehaviour
     public List<PlantOrgan> spreadOrgans;
     public bool isPlanted = false ;
     public bool isWithering = true;
+    public bool isGenerating = false;
     public int resources { get; private set;}
     public int layer { get; private set;}
     public Vector2 position { get { return transform.position; } }
@@ -37,7 +38,6 @@ public abstract class PlantOrgan : MonoBehaviour
         this.plantId = PlantId;
         this.resources = resourcesList.Where( p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0];
         this.fatherNode = FatherNode;
-        this.spreadOrgans = _SpreadPlant();
     }
 
     protected List<PlantOrgan> _SpreadPlant(){
@@ -45,5 +45,19 @@ public abstract class PlantOrgan : MonoBehaviour
         
         return generateList;
     }
+#region IRound
+
+    public virtual void OnRoundBegin(RoundManager round) {
+        if(isPlanted == true && isGenerating == false){
+            this.spreadOrgans = _SpreadPlant();
+            isGenerating = true;
+        } 
+    }
+    public virtual void OnRoundEnd(RoundManager round) {
+        if(isPlanted == true){
+            List<PlantOrgan> spreadList = spreadOrgans.Where(p => p.isPlanted == false).ToList();
+        }
+    }
+#endregion
 
 }

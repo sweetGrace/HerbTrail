@@ -13,8 +13,8 @@ public class Ground : MonoBehaviour
     public Vector2 position { get { return transform.position; } }
 
     public void AddFertilityDegree(int dif){
-        if(fertilityDegree + dif >= 2)
-            fertilityDegree = 2;
+        if(fertilityDegree + dif >= maxFertilityDegree)
+            fertilityDegree = maxFertilityDegree;
         else
             fertilityDegree += dif;
     }
