@@ -2,5 +2,6 @@ public enum PlantType{
     platformTree,
     obstacleThorn,
     harvestBush,
-    harvestVine
+    harvestVine,
+    length
 }

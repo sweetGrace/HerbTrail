@@ -1,5 +1,6 @@
 public enum PlantOrganType{  
     root,
     branch,
-    fruit
+    fruit,
+    length
 }
