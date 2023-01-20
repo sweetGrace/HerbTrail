@@ -44,8 +44,8 @@ public class CreatePanel : MonoBehaviour
 
     private void OnMouseDown()
     {
-
-        if (harvestPanel == null)
+        
+        if (harvestPanel == null && GameObject.Find("UICanvas/GamePanel/HarvestPanel(Clone)") == null )
         {
             harvestPanel = Instantiate(panel,GameObject.Find("GamePanel").transform);
             harvestPanel.transform.position = transform.position;

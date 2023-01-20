@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Tilemaps;
 
 public class MinimizePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -10,6 +11,9 @@ public class MinimizePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     [SerializeField]
     AnimationCurve hideCurve;
+
+    [SerializeField]
+    Tile df;
 
     [SerializeField]
     float animationSpeed;
