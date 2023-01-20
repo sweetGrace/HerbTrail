@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class Fruit : PlantOrgan
 {
     public new PlantOrganType OrganType {get; private set;} = PlantOrganType.fruit;
@@ -17,8 +17,8 @@ public class Fruit : PlantOrgan
     public static int[] baseGrowNutrient {get; private set;} = new int[(int)PlantType.length]{25, 25, 25, 25};//correspondence with PlantType
     public int _currentNutrient {get; private set;}
     public int periodCount {get; private set;}
-    
-    public Fruit(int Layer, int PlantId, PlantOrgan FatherNode): base(Layer, PlantId, FatherNode){
+    public int maxPeriodCount {get; private set;}
+    public Fruit(int Layer, int PlantId, PlantOrgan FatherNode, Lattice mlattice): base(Layer, PlantId, FatherNode, mlattice){
         this._currentNutrient = 0;
         this.periodCount = 0;
     }
@@ -26,10 +26,10 @@ public class Fruit : PlantOrgan
         return Fruit.baseGrowNutrient[(int)this.type]*(2 + fertility/1 + fertility);
     }
     public void PeriodUpdate(){
-        if(_currentNutrient < 2)
-            _currentNutrient++;
+        if(periodCount < maxPeriodCount)
+            periodCount++;
         else
-            _currentNutrient = 0;
+            periodCount = 0;
     }
     public void GrowingUpdate(int fertility){
         
@@ -45,7 +45,8 @@ public class Fruit : PlantOrgan
         
     }
     new public void Harvest() {
-        //ÓÉjyhÍê³É
-        Debug.LogError("fruit's harvest() is incomplete");
+        if(periodCount >= 1)
+            PlayerInfo.Instance.AddResources(resourcesList.Where( p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0]);
+
     }
 }

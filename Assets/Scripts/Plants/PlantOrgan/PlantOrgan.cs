@@ -18,6 +18,7 @@ public abstract class PlantOrgan : MonoBehaviour, IRound
         (PlantType.harvestBush, 0),
         (PlantType.harvestVine, 0)
     };
+    public Lattice atLattice{ get; private set; }
     public int Id { get; private set; }
     public int plantId { get; private set; }
     public PlantType type {get; private set;}
@@ -33,12 +34,13 @@ public abstract class PlantOrgan : MonoBehaviour, IRound
     public Vector2 position { get { return transform.position; } }
     public Lattice lattice { get; }
 
-    public PlantOrgan(int Layer, int PlantId, PlantOrgan FatherNode){
+    public PlantOrgan(int Layer, int PlantId, PlantOrgan FatherNode, Lattice mlattice){
         this.Id = _IdCount++;
         this.layer = Layer;
         this.plantId = PlantId;
         this.resources = resourcesList.Where( p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0];
         this.fatherNode = FatherNode;
+        this.atLattice = mlattice;
     }
 
     protected List<PlantOrgan> _SpreadPlant(){
@@ -62,7 +64,7 @@ public abstract class PlantOrgan : MonoBehaviour, IRound
 #endregion
     public void Harvest()
     {
-        //ÔÚ´ËÉ¾³ýtwig
+        //ï¿½Ú´ï¿½É¾ï¿½ï¿½twig
         if (layer == 1)
         {
             this.Wither();
@@ -74,7 +76,7 @@ public abstract class PlantOrgan : MonoBehaviour, IRound
             lattice.plantOrgans.Remove(this);
         }
     }
-    public void Wither()//¿ÝÎ®µ±Ç°Ö²Îï£¬²¢ÈÃËùÓÐ×ÓÖ²Îï¿ÝÎ®
+    public void Wither()//ï¿½ï¿½Î®ï¿½ï¿½Ç°Ö²ï¿½ï£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö²ï¿½ï¿½ï¿½Î®
     {
         this.isWithering= true;
         if (spreadOrgans.Count()!= 0)
@@ -87,7 +89,7 @@ public abstract class PlantOrgan : MonoBehaviour, IRound
     }
     public void Fall()
     {   
-        //´ÓµÚ¶þ²ãÂäÏÂµÄ·½·¨
+        //ï¿½ÓµÚ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÂµÄ·ï¿½ï¿½ï¿½
         lattice.ground.TurnPlain();
         lattice.plantOrgans.Clear();
         if (spreadOrgans.Count()!= 0)

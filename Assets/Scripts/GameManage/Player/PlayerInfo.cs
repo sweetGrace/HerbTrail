@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInfo : MonoBehaviour
 {
-    public int resources{ get; set; } = 100;
+    public int resources{ get;  private set; } = 100;
     public static int maxResources{ get; set; } = 100;
     public int sead { get; private set; } = Random.Range(1,1000000);
     public int currentLayer{ get; private set; }
@@ -15,7 +15,13 @@ public class PlayerInfo : MonoBehaviour
     public static int roundCostResources{ get; private set; } = 10;
     public int currentCostResources{ get; private set; }
     public static PlayerInfo Instance { get; private set; } = null;
-    public int harvestCostInc(){
+    public void AddResources(int dif){
+        if(resources + dif <= maxResources)
+            resources += dif;
+        else
+            resources = maxResources;
+    }
+    public int HarvestCostInc(){
         currentHarvestCost = baseHarvestCost * (1 + (++harvestCount));
         return currentHarvestCost;
     }

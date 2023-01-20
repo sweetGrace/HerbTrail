@@ -24,7 +24,7 @@ public class Lattice : MonoBehaviour
     }
 #endregion
 
-    public int IsWater()//ÅÐ¶ÏÊÇ·ñ±¾µØÊÇË®£¬ÊÇµÄ»°·µ»Ø1£¬²»ÊÇµÄ»°·µ»Ø0
+    public int IsWater()//ï¿½Ð¶ï¿½ï¿½Ç·ñ±¾µï¿½ï¿½ï¿½Ë®ï¿½ï¿½ï¿½ÇµÄ»ï¿½ï¿½ï¿½ï¿½ï¿½1ï¿½ï¿½ï¿½ï¿½ï¿½ÇµÄ»ï¿½ï¿½ï¿½ï¿½ï¿½0
     {
         if (ground.type == GroundType.seawater)
             return 1;
@@ -32,6 +32,6 @@ public class Lattice : MonoBehaviour
             return 0;
     }
     public void Watered() { 
-        //±ä³ÉË®ºóµÄÇé¿ö£¬ÉÐÎ´Íê³É
+        //ï¿½ï¿½ï¿½Ë®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½
     }
 }

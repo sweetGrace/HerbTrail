@@ -11,6 +11,6 @@ public class Branch : PlantOrgan
         (PlantType.harvestVine, 0)
     };
     public new PlantOrganType OrganType {get; private set;} = PlantOrganType.branch;
-    public Branch(int Layer, int PlantId, PlantOrgan FatherNode): base(Layer, PlantId, FatherNode){}
+    public Branch(int Layer, int PlantId, PlantOrgan FatherNode, Lattice mlattice): base(Layer, PlantId, FatherNode, mlattice){}
 
 }

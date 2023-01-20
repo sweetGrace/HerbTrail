@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class Plain : Ground
 {
-    public int resources;
+    public new static int resources = 10;
+    public Plain(Lattice mlattice) :base(GroundType.plain, mlattice){   }
 }

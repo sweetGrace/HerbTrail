@@ -7,5 +7,5 @@ public class Root : PlantOrgan
     public new PlantOrganType OrganType {get; private set;} = PlantOrganType.root;
     public new static List<(PlantType, List<float>)> spreadProbability = new List<(PlantType, List<float>)>{};
 
-    public Root(int Layer, int PlantId): base(Layer, PlantId, null){}
+    public Root(int Layer, int PlantId, Lattice mlattice): base(Layer, PlantId, null, mlattice){}
 }
