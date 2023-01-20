@@ -12,7 +12,7 @@ public class Ground : MonoBehaviour
     public int fertilityDegree { get; private set; } = 0;
     public bool isPlanted { get; private set; } = false;
     public bool isInShadow { get; private set; }
-    public Vector2 position { get { return transform.position; } }
+    //public Vector2 position { get { return transform.position; } }
     public Ground(GroundType mtype, Lattice mlattice){
         this.type = mtype;
         this.atLattice = mlattice;

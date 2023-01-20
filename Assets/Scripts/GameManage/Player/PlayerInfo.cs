@@ -6,7 +6,7 @@ public class PlayerInfo : MonoBehaviour
 {
     public int resources{ get;  private set; } = 100;
     public static int maxResources{ get; set; } = 100;
-    public int sead { get; private set; } = Random.Range(1,1000000);
+    public int seed { get; private set; } = Random.Range(1,10000000);
     public int currentLayer{ get; private set; }
     public string playerName{ get; private set; }
     public static int baseHarvestCost{ get; private set; } = 5;
@@ -37,5 +37,6 @@ public class PlayerInfo : MonoBehaviour
             return;
         }
         Instance = this;
+        Random.InitState( PlayerInfo.Instance.seed );
     }
 }

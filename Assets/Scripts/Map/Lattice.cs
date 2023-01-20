@@ -5,6 +5,8 @@ using System.Linq;
 using System;
 public class Lattice : MonoBehaviour
 {
+    public static List<Vector2> directionList { get; private set; }
+    = new List<Vector2>{Vector2.up, Vector2.right, Vector2.down, Vector2.left};
     public Ground ground;
     public List<PlantOrgan> plantOrgans { get; private set; }
     public Vector2 position { get; private set; }
@@ -32,6 +34,6 @@ public class Lattice : MonoBehaviour
             return 0;
     }
     public void Watered() { 
-        //ï¿½ï¿½ï¿½Ë®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½
+        //ï¿½ï¿½ï¿½Ë?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿?
     }
 }
