@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Tilemaps;
 
 public class MinimizePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
@@ -13,10 +12,10 @@ public class MinimizePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     AnimationCurve hideCurve;
 
     [SerializeField]
-    Tile df;
+    float animationSpeed;
 
     [SerializeField]
-    float animationSpeed;
+    AudioClip cancelSFX;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -32,7 +31,6 @@ public class MinimizePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         float timer = 0;
         while (timer <= 1)
         {
-            Debug.Log(1);
             this.transform.localScale = Vector3.one * hideCurve.Evaluate(timer);
             timer += Time.deltaTime * animationSpeed * 2;
             yield return null;
@@ -42,19 +40,14 @@ public class MinimizePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     }
     void Update()
     {
-        
-        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+
+        if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log(2);
-            if (_isPointerInside == false && this.transform.localScale.x > 0.9 )
+            if (_isPointerInside == false && this.transform.localScale.x > 0.9)
             {
+                SoundManager.instance.PlaySingle(cancelSFX);
                 StartCoroutine(HidePanel());
             }
-            //else
-            //{
-            //    gameObject.SetActive(false);    //我这里是隐藏它
-            //                                    //Destroy(gameObject);    //你也可以删除
-            //}
         }
 
     }
