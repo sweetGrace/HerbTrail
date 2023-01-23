@@ -315,3 +315,4 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animationSpeed: 3
+  cancelSFX: {fileID: 8300000, guid: 3fc9a102aa8ba4b11939d5b0c9ca40db, type: 3}
