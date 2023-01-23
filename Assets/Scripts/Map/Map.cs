@@ -2,14 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 public class Map : MonoBehaviour
 {
-    public Plant[] plantSet;
+    public List<Plant> plantSet;
+    public List<PlantOrgan> generateOrganList = new List<PlantOrgan>();
     public Lattice[,] latticeMap = new Lattice[513, 513];//each quadrant is 256*256
-    public static Map Instance {get; private set;}
-    private void _SpreadSea(){
+    public static Map Instance {get; private set;} = null;
+    
+    public void GenerateOrgansOnMap(){
+        plantSet.ForEach( p => p.plantOrgans.ForEach( q => generateOrganList.AddRange(q.spreadOrgans
+        .Where( r => r.isPlanted == false && latticeMap[Convert.ToInt32(r.atLattice.position.x), Convert.ToInt32(r.atLattice.position.y)].ground.type != GroundType.seawater
+         && latticeMap[Convert.ToInt32(r.atLattice.position.x), Convert.ToInt32(r.atLattice.position.y)].plantOrgans
+        .Where( s => s.layer == r.layer).ToList().Count == 0 && (generateOrganList.Where( t => t.layer == r.layer &&
+        generateOrganList.Where( u => Convert.ToInt32(u.atLattice.position.x) == Convert.ToInt32(r.atLattice.position.x) &&
+        Convert.ToInt32(u.atLattice.position.y) == Convert.ToInt32(r.atLattice.position.y) ).ToList().Count == 0).ToList().Count == 0)))  ));
+    }
+    public void SpreadSea(){
         for(int i = 1; i < 512; i++){
-            for(int j = 1; j <512; j++){
+            for(int j = 1; j < 512; j++){
 
                 if (latticeMap[i, j].IsWater()==0) {
                     //第一种与第二种
@@ -21,14 +32,14 @@ public class Map : MonoBehaviour
             }
         }
     }
-    private void _ClearWithering(){
+    public void ClearWithering(){
         foreach(var lattice in Map.Instance.latticeMap){
             List<PlantOrgan> witheringList = lattice.plantOrgans.Where( organ => organ.isWithering == true).ToList();
             witheringList.ForEach( organ => lattice.plantOrgans.Remove(organ) );
             lattice.ground.AddFertilityDegree(witheringList.Count);
         }
     }
-    private void _HarvestPlant(Lattice lattice, PlantOrgan morgan=null){
+    public void HarvestPlant(Lattice lattice, PlantOrgan morgan=null){
         bool flag = true;//用来判断是否有第二层落下
         if (lattice == morgan.lattice) {
             if (morgan)

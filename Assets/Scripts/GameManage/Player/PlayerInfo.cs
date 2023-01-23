@@ -1,19 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Linq;
 
 public class PlayerInfo : MonoBehaviour
 {
-    public int resources{ get;  private set; } = 100;
-    public static int maxResources{ get; set; } = 100;
-    public int seed { get; private set; } = Random.Range(1,10000000);
+    public int resources{ get; private set; } = 100;
+    public int maxResources{ get; set; } = 100;
+    public int seed { get; private set; } = UnityEngine.Random.Range(1,10000000);
     public int currentLayer{ get; private set; }
     public string playerName{ get; private set; }
-    public static int baseHarvestCost{ get; private set; } = 5;
-    public int currentHarvestCost{ get; private set; }
+    public int baseHarvestCost{ get; private set; } = 5;
+    public int currentHarvestCost{ get; private set; } = 5;
     public int harvestCount{ get; private set; } = 0;
-    public static int roundCostResources{ get; private set; } = 10;
-    public int currentCostResources{ get; private set; }
+    public int baseRoundCostResources{ get; private set; } = 10;
+    public int currentRoundCostResources{ get; private set; }
+    public int layerHeight{ get; private set; } = 10;
     public static PlayerInfo Instance { get; private set; } = null;
     public void AddResources(int dif){
         if(resources + dif <= maxResources)
@@ -26,10 +29,30 @@ public class PlayerInfo : MonoBehaviour
         return currentHarvestCost;
     }
     public void SwitchLayer(){
-        if(currentLayer == 1)
+        Func<Color, float, Color> AlterAlpha = (x, i) => {
+            Color y = new Color(x.r, x.g, x.b, i);
+            return y;
+        };
+        Action<int, int> SwitchTransparent = (a, b) =>{//a becomes transparent and b becomes opposite
+            Map.Instance.plantSet.ForEach(p => {
+                p.plantOrgans.Where(q => q.layer == a).ToList()
+                .ForEach(r => r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, 0.3f));
+                p.plantOrgans.Where(q => q.layer == b).ToList()
+                .ForEach(r => r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, 1f));
+            });
+        };
+        if(currentLayer == 1){
             currentLayer = 2;
-        else
+            SwitchTransparent(1, 2);
+        }
+        else{
             currentLayer = 1;
+            SwitchTransparent(2, 1);
+        }
+    }
+    public void ClearAll(){
+        currentHarvestCost = baseHarvestCost;
+        harvestCount = 0;
     }
     private void Start() {
         if (Instance != null) {
@@ -37,6 +60,7 @@ public class PlayerInfo : MonoBehaviour
             return;
         }
         Instance = this;
-        Random.InitState( PlayerInfo.Instance.seed );
+        currentRoundCostResources = baseRoundCostResources;
+        UnityEngine.Random.InitState(seed);
     }
 }
