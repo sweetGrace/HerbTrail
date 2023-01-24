@@ -56,7 +56,7 @@ public class Branch : PlantOrgan
                 this.isGeneratingFruit = true;
                 break;
             case PlantType.harvestVine:
-                if(spreadOrgans.Where( p => p.OrganType == PlantOrganType.branch).ToList().Count == 3){
+                if(spreadOrgans.Where(p => p.OrganType == PlantOrganType.branch).ToList().Count == 3){
                     tmp.InitMe(layer, plant, type, this, atLattice, Vector2.zero, new Twig());
                     generateList.Add(tmp);
                     this.isGeneratingFruit = true;

@@ -71,15 +71,17 @@ public abstract class PlantOrgan : MonoBehaviour
         this.type = mtype;
         this.fatherTwig = mfatherTwig;
     }
-    
     public void ChangeStatePic(PlantType type){
         statePicRenderer.sprite = statePics[(int)type];
-    } 
+    }
+    public void ChangeStatePic(){
+        statePicRenderer.sprite = statePics[(int)this.type];
+    }
     public virtual List<PlantOrgan> GenerateFruits(){
         List<PlantOrgan> generateList = new List<PlantOrgan>();
         return generateList;
     }
-    protected List<PlantOrgan> _SpreadPlant(){
+    public List<PlantOrgan> SpreadPlant(){
         List<PlantOrgan> generateList = new List<PlantOrgan>();
         List<int> probilityList = resourcesList.Where(p => p.Item1 == type).Select(p => p.Item2).ToList();
         int totalProbility = probilityList.Sum();
@@ -179,7 +181,7 @@ public abstract class PlantOrgan : MonoBehaviour
         this.Id = _IdCount++;
         this.resources = resourcesList.Where(p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0];
         if(isPlanted == true && isGenerating == false){
-            this.spreadOrgans = _SpreadPlant();
+            this.spreadOrgans =SpreadPlant();
             isGenerating = true;
         }
     }

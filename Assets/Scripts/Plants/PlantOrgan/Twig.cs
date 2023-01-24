@@ -6,10 +6,15 @@ public class Twig : MonoBehaviour
 {
     public PlantOrgan fatherNode{get; private set;} = null;
     public SpriteRenderer statePicRenderer;
-    public Sprite[] statePics;
-    public void ChangeStatePic(PlantType type){
-        statePicRenderer.sprite = statePics[(int)type];
+    public Sprite[] stateWitheringPics;
+    public Sprite[] stateSpreadingPics;
+    public bool isWithering = false;
+    public void ChangeStatePic(PlantType type, Sprite[] pics){
+        statePicRenderer.sprite = pics[(int)type];
     } 
+    public void ChangeStatePic(Sprite[] pics){
+        statePicRenderer.sprite = pics[(int)fatherNode?.type];
+    }
     public void InitMe(PlantOrgan mfatherNode){
         this.fatherNode = mfatherNode;
     }

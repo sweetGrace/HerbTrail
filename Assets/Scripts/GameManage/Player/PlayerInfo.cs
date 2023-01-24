@@ -24,15 +24,15 @@ public class PlayerInfo : MonoBehaviour
         else
             resources = maxResources;
     }
+    public Func<Color, float, Color> AlterAlpha = (x, i) => {
+        Color y = new Color(x.r, x.g, x.b, i);
+        return y;
+    };
     public int HarvestCostInc(){
         currentHarvestCost = baseHarvestCost * (1 + (++harvestCount));
         return currentHarvestCost;
     }
     public void SwitchLayer(){
-        Func<Color, float, Color> AlterAlpha = (x, i) => {
-            Color y = new Color(x.r, x.g, x.b, i);
-            return y;
-        };
         Action<int, int> SwitchTransparent = (a, b) =>{//a becomes transparent and b becomes opposite
             Map.Instance.plantSet.ForEach(p => {
                 p.plantOrgans.Where(q => q.layer == a).ToList()

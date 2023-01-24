@@ -25,6 +25,6 @@ public class InfoPanel : MonoBehaviour
     public void UpdateHungerAndCost()
     {
         hungerText.text ="饥饿值：" + PlayerInfo.Instance.resources.ToString();
-        costText.text = "本次收获消耗饥饿值：" + PlayerInfo.Instance.currentCostResources.ToString();
+        costText.text = "本次收获消耗饥饿值：" + PlayerInfo.Instance.currentRoundCostResources.ToString();
     }
 }

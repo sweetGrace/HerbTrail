@@ -10,15 +10,14 @@ public class Map : MonoBehaviour
     public Lattice[,] latticeMap = new Lattice[513, 513];//each quadrant is 256*256
     public static Map Instance { get; private set; } = null;
     private double _P = 0.5;// water generate probability, the bigger the more possible 
-
-    public void GenerateOrgansOnMap()
-    {
+    public void GenerateOrgansOnMap(){
+        generateOrganList.Clear();
         plantSet.ForEach(p => p.plantOrgans.ForEach(q => generateOrganList.AddRange(q.spreadOrgans
-      .Where(r => r.isPlanted == false && latticeMap[Convert.ToInt32(r.atLattice.position.x), Convert.ToInt32(r.atLattice.position.y)].ground.type != GroundType.seawater
-      && latticeMap[Convert.ToInt32(r.atLattice.position.x), Convert.ToInt32(r.atLattice.position.y)].plantOrgans
-     .Where(s => s.layer == r.layer).ToList().Count == 0 && (generateOrganList.Where(t => t.layer == r.layer &&
-   generateOrganList.Where(u => Convert.ToInt32(u.atLattice.position.x) == Convert.ToInt32(r.atLattice.position.x) &&
-  Convert.ToInt32(u.atLattice.position.y) == Convert.ToInt32(r.atLattice.position.y)).ToList().Count == 0).ToList().Count == 0)))));
+        .Where(r => r.isPlanted == false && latticeMap[Convert.ToInt32(r.atLattice.position.x), Convert.ToInt32(r.atLattice.position.y)].ground.type != GroundType.seawater
+        && latticeMap[Convert.ToInt32(r.atLattice.position.x), Convert.ToInt32(r.atLattice.position.y)].plantOrgans
+        .Where(s => s.layer == r.layer).ToList().Count == 0 && (generateOrganList.Where(t => t.layer == r.layer &&
+        generateOrganList.Where(u => Convert.ToInt32(u.atLattice.position.x) == Convert.ToInt32(r.atLattice.position.x) &&
+        Convert.ToInt32(u.atLattice.position.y) == Convert.ToInt32(r.atLattice.position.y)).ToList().Count == 0).ToList().Count == 0)))));
     }
     public void SpreadSea()
     {
@@ -74,14 +73,16 @@ public class Map : MonoBehaviour
         foreach (var lattice in Map.Instance.latticeMap)
         {
             List<PlantOrgan> witheringList = lattice.plantOrgans.Where(organ => organ.isWithering == true).ToList();
-            witheringList.ForEach(organ => lattice.plantOrgans.Remove(organ));
+            witheringList.ForEach(organ => {
+                organ.twigsList.ForEach(p => Destroy(p.gameObject));
+                Destroy(organ.gameObject);
+                lattice.plantOrgans.Remove(organ);
+            });
             lattice.ground.AddFertilityDegree(witheringList.Count);
+            
         }
     }
-    public void OrganGenerate()
-    {
 
-    }
     public void HarvestPlant(Lattice lattice, PlantOrgan morgan = null)
     {
         bool flag = true;//to judge if a second floor fall

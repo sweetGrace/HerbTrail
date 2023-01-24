@@ -21,7 +21,7 @@ public class Lattice : MonoBehaviour
 
     #endregion
     #region RoundEndUpdate
-    private void _UpdateFruitState()
+    public void UpdateFruitState()
     {
         List<Fruit> fruitList = plantOrgans.OfType<Fruit>().ToList();
         fruitList.ForEach(fruit => fruit.GrowingUpdate(ground.fertilityDegree));
@@ -46,5 +46,8 @@ public class Lattice : MonoBehaviour
             //turn ground into water
             ground.TurnWater();
         }
+    }
+    private void Start() {
+        this.position = (Vector2)this?.plantOrgans?[0]?.gameObject.transform.position;
     }
 }
