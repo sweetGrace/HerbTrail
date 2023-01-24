@@ -135,19 +135,21 @@ public abstract class PlantOrgan : MonoBehaviour
     }
     public void Harvest()
     {
-        //�ڴ�ɾ��twig
+        //harvest plant
         if (layer == 1)
         {
             this.Wither();
-            lattice.plantOrgans.Remove(this);
+            //to destroy class
+            //lattice.plantOrgans.Remove(this);
         }
         if (layer == 2)
         {
             this.Fall();
-            lattice.plantOrgans.Remove(this);
+            //to destroy class
+            //lattice.plantOrgans.Remove(this);
         }
     }
-    public void Wither()//��ή��ǰֲ�����������ֲ���ή
+    public void Wither()//organ and all son wither
     {
         this.isWithering= true;
         if (spreadOrgans.Count()!= 0)
@@ -158,11 +160,11 @@ public abstract class PlantOrgan : MonoBehaviour
             }
         }
     }
-    public void Fall()
-    {   
-        //�ӵڶ������µķ���
+    public void Fall()//organ and all son wither
+    {
+        //to destroy class
         lattice.ground.TurnPlain();
-        lattice.plantOrgans.Clear();
+        //lattice.plantOrgans.Clear();
         if (spreadOrgans.Count()!= 0)
         {
             foreach (PlantOrgan organ in spreadOrgans)
