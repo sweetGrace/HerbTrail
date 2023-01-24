@@ -19,9 +19,6 @@ public class CreatePanel : MonoBehaviour
     float animationSpeed;
 
     [SerializeField]
-    AudioClip harvestSFX, selectedSFX;
-
-    [SerializeField]
     Tilemap map;
 
     Lattice selectedLattice;
@@ -75,7 +72,7 @@ public class CreatePanel : MonoBehaviour
 
     public void CreateHarvestPanel()
     {
-        SoundManager.instance.PlaySingle(selectedSFX);
+        SoundManager.Instance.PlaySingle(ClipsType.select);
         CreateHervestButton();
         CreateHervestButton();
         CreateHervestButton();
@@ -92,7 +89,8 @@ public class CreatePanel : MonoBehaviour
 
         harvestButton.onClick.AddListener(delegate ()
         {
-            SoundManager.instance.PlaySingle(harvestSFX);
+            SoundManager.Instance.PlaySingle(ClipsType.harvest);
+            InfoPanel.Instance.UpdateHungerAndCost();
             StartCoroutine(HidePanel());
         });
     }

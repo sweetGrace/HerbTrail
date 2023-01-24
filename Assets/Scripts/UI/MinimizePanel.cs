@@ -14,8 +14,7 @@ public class MinimizePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField]
     float animationSpeed;
 
-    [SerializeField]
-    AudioClip cancelSFX;
+    
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -45,7 +44,7 @@ public class MinimizePanel : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         {
             if (_isPointerInside == false && this.transform.localScale.x > 0.9)
             {
-                SoundManager.instance.PlaySingle(cancelSFX);
+                SoundManager.Instance.PlaySingle(ClipsType.deselect);
                 StartCoroutine(HidePanel());
             }
         }

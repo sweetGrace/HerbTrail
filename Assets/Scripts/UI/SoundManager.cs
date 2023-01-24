@@ -1,21 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance = null;
+    public static SoundManager Instance = null;
     public AudioSource efxSource;
     public float lowPitchRange = 0.95f;
     public float highPitchRange = 1.05f;
 
+    [SerializeField]
+    List<AudioClip> clips;
+
     private void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
-        else if (instance != this)
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
@@ -23,9 +27,9 @@ public class SoundManager : MonoBehaviour
     }
 
     //播放指定的音乐clip
-    public void PlaySingle(AudioClip clip)
+    public void PlaySingle(ClipsType index)
     {
-        efxSource.clip = clip;
+        efxSource.clip = clips[(int)index];
         efxSource.Play();
     }
 
