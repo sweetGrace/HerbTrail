@@ -13,17 +13,14 @@ public class SoundManager : MonoBehaviour
     [SerializeField]
     List<AudioClip> clips;
 
-    private void Awake()
+    private void Start()
     {
-        if (Instance == null)
+        if (Instance != null)
         {
-            Instance = this;
+            Debug.LogError("SoundManager already exists.");
+            return;
         }
-        else if (Instance != this)
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
+        Instance = this;
     }
 
     //播放指定的音乐clip

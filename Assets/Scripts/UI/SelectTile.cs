@@ -16,7 +16,7 @@ public class SelectTile : MonoBehaviour
     private void Update()
     {
         Vector3Int mousePos = GetMousePosition();
-        Debug.Log(mousePos);
+        //Debug.Log(mousePos);
         Vector3 highPos = tileMap.CellToWorld(GetMousePosition());
         selectedImage.transform.position = highPos;
         //if (!mousePos.Equals(previousMousePos))

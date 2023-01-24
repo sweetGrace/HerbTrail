@@ -8,16 +8,15 @@ public class InfoPanel : MonoBehaviour
     public static InfoPanel Instance { get; private set; } = null;
 
     Text hungerText, costText;
-    private void Awake()
+
+    private void Start()
     {
-        if(Instance == null)
+        if (Instance != null)
         {
-            Instance = this;
+            Debug.LogError("InfoPanel already exists.");
+            return;
         }
-        else if(Instance != this)
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
         hungerText = this.transform.GetChild(0).GetComponent<Text>();
         costText = this.transform.GetChild(1).GetComponent<Text>();
     }

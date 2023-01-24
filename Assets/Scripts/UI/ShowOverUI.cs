@@ -7,18 +7,16 @@ public class ShowOverUI : MonoBehaviour
     [SerializeField]
     GameObject gameOverPanel,startPanel,gamePanel;
 
-    public static ShowOverUI instance { get; private set; } = null;
+    public static ShowOverUI Instance { get; private set; } = null;
 
-    private void Awake()
+    private void Start()
     {
-        if(instance == null)
+        if (Instance != null)
         {
-            instance = this;
+            Debug.LogError("ShowOverUI already exists.");
+            return;
         }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
     }
 
     public void Show()

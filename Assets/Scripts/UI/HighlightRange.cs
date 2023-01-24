@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class Highlight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class HighlightRange : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
     [SerializeField]
@@ -14,13 +14,18 @@ public class Highlight : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public List<Vector2Int> positions;
 
+    private void Start()
+    {
+        Debug.Log(this.gameObject.name);
+    }
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (this.transform.parent.localScale.x > 0.9)
         {
             for (int i = 0; i < positions.Count; i++)
             {
-                images.Add(CreateRange.instance.CreateRangeHighlight((Vector3Int)positions[i]));
+                images.Add(CreateRange.Instance.CreateRangeHighlight((Vector3Int)positions[i]));
 
             }
         }

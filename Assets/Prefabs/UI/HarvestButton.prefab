@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 8843099038918268845}
   - component: {fileID: 9037568902052373472}
   - component: {fileID: 4182297661729625667}
+  - component: {fileID: -4654997675472321665}
   m_Layer: 5
   m_Name: HarvestButton
   m_TagString: Untagged
@@ -277,6 +278,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-4654997675472321665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4626246841434243775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b04929a75fb2224fbeeca66846826af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightImage: {fileID: 0}
+  positions: []
 --- !u!1 &7310168991583959247
 GameObject:
   m_ObjectHideFlags: 0

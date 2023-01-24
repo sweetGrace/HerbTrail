@@ -12,19 +12,30 @@ public class CreateRange: MonoBehaviour
     [SerializeField]
     Tilemap tileMap;
 
-    public static CreateRange instance = null;
+    public static CreateRange Instance = null;
 
-    private void Awake()
+    private void Start()
     {
-        if (instance == null)
+        if (Instance != null)
         {
-            instance = this;
+            Debug.LogError("CreateRange already exists.");
+            return;
         }
+        Instance = this;
     }
 
     public Image CreateRangeHighlight(Vector3Int position)
     {
         return Instantiate(rangeImage, tileMap.CellToWorld(position), Quaternion.identity, this.transform);
+    }
+
+    public Vector3 CubeTreeTranslate(Vector3 worldPos)
+    {
+        Vector3Int offset = new Vector3Int(3, 3, 0);
+        Vector3Int cellPos = tileMap.WorldToCell(worldPos);
+        Vector3Int offsetCellPos = cellPos + offset;
+        return tileMap.CellToWorld(offsetCellPos);
+
     }
 
 }
