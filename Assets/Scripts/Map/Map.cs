@@ -15,7 +15,8 @@ public class Map : MonoBehaviour
     private double _hBushPossibility = 0.2;
     [Range(0, 1)]
     private double _hVinePossibility = 0.2;
-    //
+    [Range(1, 255)]
+    private int _initialRange = 5;
     [Range(0, 1)]
     private double _P = 0.5;// water generate probability, the bigger the more possible 
 
@@ -25,7 +26,27 @@ public class Map : MonoBehaviour
     public List<Lattice> generateWaterList = new List<Lattice>();
     public Lattice[,] latticeMap = new Lattice[513, 513];//each quadrant is 256*256
     public static Map Instance { get; private set; } = null;
-
+    public void InitLattice()
+    {
+        for (int i = 0; i < 513; i++)
+        {
+            for (int j = 0; j < 513; j++)
+            {
+                if(i<256- _initialRange||i>256+ _initialRange||j<256- _initialRange||j>256+ _initialRange)
+                {
+                    latticeMap[i,j].ground.type = GroundType.seawater;
+                    latticeMap[i,j].ground.atLattice = latticeMap[i,j];
+                    latticeMap[i, j].position = new Vector2(i, j);
+                }
+                else
+                {
+                    latticeMap[i,j].ground.type = GroundType.plain;
+                    latticeMap[i,j].ground.atLattice = latticeMap[i,j];
+                    latticeMap[i, j].position = new Vector2(i, j);
+                }
+            }
+        }
+    }
     public void GenerateOrgansOnMap()
     {
         generateOrganList.Clear();

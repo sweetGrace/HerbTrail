@@ -7,9 +7,9 @@ public class Lattice : MonoBehaviour
 {
     public static List<Vector2> directionList { get; private set; }
     = new List<Vector2> { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
-    public Ground ground;
-    public List<PlantOrgan> plantOrgans { get; private set; }
-    public Vector2 position { get; private set; }
+    public Ground ground = new Ground();
+    public List<PlantOrgan> plantOrgans { get; private set; } = new List<PlantOrgan>();
+    public Vector2 position { get; set; }
 
     public Lattice(Vector2 mpositon)
     {
@@ -37,7 +37,7 @@ public class Lattice : MonoBehaviour
     }
     public void Watered()
     { //turn this into water
-        if (this.IsWater()==0)
+        if (this.IsWater() == 0)
         {
             //TODO destroy class
             //clear plantorgan list
@@ -47,7 +47,9 @@ public class Lattice : MonoBehaviour
             ground.TurnWater();
         }
     }
-    private void Start() {
+    private void Start()
+    {
         this.position = (Vector2)this?.plantOrgans?[0]?.gameObject.transform.position;
     }
+
 }
