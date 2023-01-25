@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance = null;
-    public AudioSource efxSource;
+    public AudioSource efxSource,bgmSource;
     public float lowPitchRange = 0.95f;
     public float highPitchRange = 1.05f;
 
@@ -23,11 +23,26 @@ public class SoundManager : MonoBehaviour
         Instance = this;
     }
 
+    public void ActivateManager()
+    {
+        efxSource.enabled = true;
+        bgmSource.enabled = true;
+    }
+
+    public void DisableManager()
+    {
+        efxSource.enabled = false;
+        bgmSource.enabled = false;
+    }
+
     //播放指定的音乐clip
     public void PlaySingle(ClipsType index)
     {
-        efxSource.clip = clips[(int)index];
-        efxSource.Play();
+        if(efxSource.enabled)
+        {
+            efxSource.clip = clips[(int)index];
+            efxSource.Play();
+        }
     }
 
     //在指定的音乐列表中clips以随机音量播放一段随机音乐
