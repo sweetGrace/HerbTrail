@@ -72,7 +72,7 @@ public class RoundManager : MonoBehaviour {
         Map.Instance.plantSet.ForEach(plant => plant.plantOrgans.Where(organ => organ.isGeneratingFruit == false).ToList().ForEach(p => p.spreadOrgans.AddRange(p.GenerateFruits())));
         Map.Instance.plantSet.ForEach(plant => plant.plantOrgans.OfType<Fruit>().ToList().ToList().ForEach(fruit => fruit.GrowingUpdate(fruit.atLattice.ground.fertilityDegree)));
         Map.Instance.ClearWithering();
-        Map.Instance.SpreadSea();
+        Map.Instance.GenerateWaterOnMap();
         SoundManager.Instance.PlaySingle(ClipsType.waterSpread);
         Map.Instance.GenerateOrgansOnMap();
         StartNextRound();

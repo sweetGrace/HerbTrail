@@ -7,6 +7,7 @@ public class Map : MonoBehaviour
 {
     public List<Plant> plantSet;
     public List<PlantOrgan> generateOrganList = new List<PlantOrgan>();
+    public List<Lattice> generateWaterList = new List<Lattice>();
     public Lattice[,] latticeMap = new Lattice[513, 513];//each quadrant is 256*256
     public static Map Instance { get; private set; } = null;
     private double _P = 0.5;// water generate probability, the bigger the more possible 
@@ -19,11 +20,16 @@ public class Map : MonoBehaviour
         generateOrganList.Where(u => Convert.ToInt32(u.atLattice.position.x) == Convert.ToInt32(r.atLattice.position.x) &&
         Convert.ToInt32(u.atLattice.position.y) == Convert.ToInt32(r.atLattice.position.y)).ToList().Count == 0).ToList().Count == 0)))));
     }
-    public void SpreadSea()
+    public void PutOrgansOnMap()
     {
-        List<Lattice> willWaterLattice = new List<Lattice>();
-        
-        
+        foreach(var p in generateOrganList)
+        {
+            //bound some canshu
+        }
+    }
+    public void GenerateWaterOnMap()//generate predictive water lattice in a list
+    {
+        generateWaterList.Clear();
         for (int i = 1; i < 512; i++)
         {
             
@@ -39,33 +45,37 @@ public class Map : MonoBehaviour
                 int a7 = latticeMap[i - 1, j + 1].IsWater();//bottom left
                 int a8 = latticeMap[i, j + 1].IsWater();//bottom
                 int a9 = latticeMap[i + 1, j + 1].IsWater();//bottom right
-                if (a5==0)
+                if (a5==0&& latticeMap[i, j].plantOrgans.Exists(p => p.type== PlantType.obstacleThorn))
                 {
                     //cross have two ("L" and "---")
                     if (a2+a4+a6+a8>=2)
                     {
-                        willWaterLattice.Add(latticeMap[i, j]);
+                        generateWaterList.Add(latticeMap[i, j]);
                     }
                     //diagonal "\" and "/"
                     else if (a1+a9==2||a3+a7==2)
                     {
-                        willWaterLattice.Add(latticeMap[i, j]);
+                        generateWaterList.Add(latticeMap[i, j]);
                     }
                     // threesome
                     else if (a1+a2+a3==3||a1+a4+a7==3||a3+a6+a9==3||a7+a8+a9==3)
                     {
-                        System.Random random = new System.Random();// random
+                        System.Random random = new System.Random();
                         if (random.NextDouble() < _P)
                         {
-                            willWaterLattice.Add(latticeMap[i, j]);
+                            generateWaterList.Add(latticeMap[i, j]);
                         }
                     }
                 }
             }
         }
-        foreach(var lattice in willWaterLattice)
+
+    }
+    public void PutWaterOnMap()
+    {
+        foreach( var p in generateWaterList)
         {
-            lattice.Watered();
+            p.Watered();
         }
     }
     public void ClearWithering()
