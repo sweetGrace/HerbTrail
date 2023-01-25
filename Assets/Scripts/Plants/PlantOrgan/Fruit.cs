@@ -93,6 +93,23 @@ public class Fruit : PlantOrgan
             }
         }
     }
+    new public void Wither()//organ and all son wither
+    {
+        this.isWithering = true;
+        ChangeStatePic(stateWitheringPics);
+        if (twigsList.Count != 0)
+        {
+            foreach (var a in twigsList)
+                a.Wither();
+        }
+        if (spreadOrgans.Count() != 0)
+        {
+            foreach (PlantOrgan organ in spreadOrgans)
+            {
+                organ.Wither();
+            }
+        }
+    }
     new public void Harvest() {
         if(periodCount >= 1)
             PlayerInfo.Instance.AddResources(Convert.ToInt32(resourcesList.Where( p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0]/2));

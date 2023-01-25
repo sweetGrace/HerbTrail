@@ -21,7 +21,7 @@ public class Twig : MonoBehaviour
     public void Wither()
     { 
         isWithering = true;
-        ChangeStatePic(stateWitheringPics)
+        ChangeStatePic(stateWitheringPics);
     }
     // Start is called before the first frame update
     void Start()
