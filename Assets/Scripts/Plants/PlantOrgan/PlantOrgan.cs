@@ -159,8 +159,11 @@ public abstract class PlantOrgan : MonoBehaviour
     {
         this.isWithering= true;
         ChangeStatePic();
-        foreach(var a in twigsList)
-            a.Wither();
+        if (twigsList.Count != 0)
+        {
+            foreach (var a in twigsList)
+                a.Wither();
+        }
         if (spreadOrgans.Count()!= 0)
         {
             foreach (PlantOrgan organ in spreadOrgans)
