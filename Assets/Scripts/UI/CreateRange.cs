@@ -7,10 +7,12 @@ using UnityEngine.Tilemaps;
 public class CreateRange: MonoBehaviour
 {
     [SerializeField]
-    Image rangeImage;
+    Image rangeImage,redRangeImage;
 
     [SerializeField]
     Tilemap tileMap;
+
+    List<Image> ranges;
 
     public static CreateRange Instance = null;
 
@@ -28,6 +30,24 @@ public class CreateRange: MonoBehaviour
     {
         return Instantiate(rangeImage, tileMap.CellToWorld(position), Quaternion.identity, this.transform);
     }
+
+    public void CreateWarningRange()
+    {
+        foreach(Lattice l in Map.Instance.generateWaterList)
+        {
+            ranges.Add(Instantiate(redRangeImage, tileMap.CellToWorld(new Vector3Int((int)l.position.x, (int)l.position.y,0)), Quaternion.identity, this.transform));
+        }
+    }
+
+    public void DeleteWarningRange()
+    {
+        foreach(Image i in ranges)
+        {
+            Destroy(i.gameObject);
+        }
+        ranges.Clear();
+    }
+
 
     public Vector3 CubeTreeTranslate(Vector3 worldPos)
     {

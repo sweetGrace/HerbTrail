@@ -54,22 +54,34 @@ public abstract class PlantOrgan : MonoBehaviour
         copyMe.InitMe(copyMe);
         this.layer = copyMe.layer;
         this.plant = copyMe.plant;
+        this.plant.plantOrgans.Add(this);
         this.fatherNode = copyMe.fatherNode;
         this.atLattice = copyMe.atLattice;
+        this.atLattice.plantOrgans.Add(this);
         this.relativeDirection = copyMe.relativeDirection;
         this.type = copyMe.type;
         this.fatherTwig = copyMe.fatherTwig;
     }
     public virtual void InitMe(int Layer, Plant Plant, PlantType mtype, PlantOrgan FatherNode, Lattice mlattice, Vector2 mrelativeDirection,Twig mfatherTwig){  
-        mfatherTwig.InitMe(FatherNode);
+        mfatherTwig?.InitMe(FatherNode);
         this.layer = Layer;
         this.plant = Plant;
-        this.resources = resourcesList.Where(p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0];
+        this.plant.plantOrgans.Add(this);
         this.fatherNode = FatherNode;
         this.atLattice = mlattice;
+        this.atLattice.plantOrgans.Add(this);
         this.relativeDirection = mrelativeDirection;
         this.type = mtype;
         this.fatherTwig = mfatherTwig;
+    }
+    public virtual void ClearMe(){
+        this.twigsList.ForEach(p => Destroy(p.gameObject));
+        this.twigsList.ForEach(p => p.InitMe(null));
+        this.twigsList.Clear();
+        Destroy(this.gameObject);
+        plant.plantOrgans.Remove(this);
+        atLattice.plantOrgans.Remove(this);
+        fatherNode.spreadOrgans.Remove(this);
     }
     public void ChangeStatePic(PlantType type){
         statePicRenderer.sprite = statePics[(int)type];
@@ -138,25 +150,25 @@ public abstract class PlantOrgan : MonoBehaviour
     public void Harvest()
     {
         //harvest plant
+        if(isPlanted == false){
+            Debug.LogError("harvest not planted");
+            return;
+        }
         if (layer == 1)
         {
             this.Wither();
-            //TODO destroy class
-            //destroy myself
-            //lattice.plantOrgans.Remove(this);
-            //
+            ClearMe();
         }
         if (layer == 2)
         {
             this.Fall();
-            //TODO destroy class
-            //destroy myself
-            //lattice.plantOrgans.Remove(this);
-            //
+            ClearMe();
         }
     }
     public void Wither()//organ and all son wither
     {
+        if(isPlanted == false)
+            return;
         this.isWithering= true;
         ChangeStatePic();
         if (twigsList.Count != 0)
@@ -174,9 +186,9 @@ public abstract class PlantOrgan : MonoBehaviour
     }
     public void Fall()//organ and all son wither
     {
-        //TODO destroy class
+        if(isPlanted == false)
+            return;
         lattice.ground.TurnPlain();
-        //lattice.plantOrgans.Clear();
         if (spreadOrgans.Count()!= 0)
         {
             foreach (PlantOrgan organ in spreadOrgans)
@@ -184,7 +196,7 @@ public abstract class PlantOrgan : MonoBehaviour
                 organ.Fall();
             }
         }
-
+        ClearMe();
     }
     void Start() {
         statePicRenderer = GetComponent<SpriteRenderer>();

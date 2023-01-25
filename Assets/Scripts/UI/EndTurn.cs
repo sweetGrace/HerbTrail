@@ -11,6 +11,7 @@ public class EndTurn : MonoBehaviour
         endTurnButton = gameObject.GetComponent<Button>();
         endTurnButton.onClick.AddListener(delegate ()
         {
+            CreateRange.Instance.DeleteWarningRange();
             RoundManager.Instance.EndCurrentRound();
         });
     }

@@ -24,6 +24,7 @@ public class Root : PlantOrgan
         copyMe.InitMe(copyMe);
         this.layer = copyMe.layer;
         this.plant = copyMe.plant;
+        this.plant.plantOrgans.Add(this);
         this.fatherNode = copyMe.fatherNode;
         this.atLattice = copyMe.atLattice;
         this.relativeDirection = copyMe.relativeDirection;
@@ -31,11 +32,13 @@ public class Root : PlantOrgan
         this.fatherTwig = copyMe.fatherTwig;
     }
     public override void InitMe(int Layer, Plant Plant, PlantType mtype, PlantOrgan FatherNode, Lattice mlattice, Vector2 mrelativeDirection, Twig mfatherTwig){
-        mfatherTwig.InitMe(FatherNode);
+        mfatherTwig?.InitMe(FatherNode);
         this.layer = Layer;
         this.plant = Plant;
+        this.plant.plantOrgans.Add(this);
         this.fatherNode = FatherNode;
         this.atLattice = mlattice;
+        this.atLattice.plantOrgans.Add(this);
         this.relativeDirection = mrelativeDirection;
         this.type = mtype;
         this.fatherTwig = mfatherTwig;

@@ -5,7 +5,9 @@ using UnityEngine.Tilemaps;
 using System;
 
 public class RoundManager : MonoBehaviour {
-    Tilemap tilemap;
+    public Tilemap tilemap;
+    public Tile seawaterTile;
+    public Tile plainTile;
     private int _currentRound = 0;
     public int roundCount { get => _currentRound; }
     public static RoundManager Instance { get; private set; } = null;
@@ -43,7 +45,9 @@ public class RoundManager : MonoBehaviour {
         });
     }
     public void StartNextRound() {
-        //TODO plant generate
+        _currentRound++;
+        Map.Instance.GeneratePlantsOnMap();
+        CreateRange.Instance.CreateWarningRange();
         Map.Instance.generateOrganList.Where(q => q.layer == 1).ToList().ForEach(p => {
             Destroy(p.gameObject);
             p?.fatherNode?.twigsList.ForEach(r => r.ChangeStatePic(r.stateSpreadingPics));
@@ -73,6 +77,7 @@ public class RoundManager : MonoBehaviour {
         Map.Instance.plantSet.ForEach(plant => plant.plantOrgans.OfType<Fruit>().ToList().ToList().ForEach(fruit => fruit.GrowingUpdate(fruit.atLattice.ground.fertilityDegree)));
         Map.Instance.ClearWithering();
         Map.Instance.GenerateWaterOnMap();
+        Map.Instance.generateWaterList.ForEach(p => tilemap.SetTile(new Vector3Int(Convert.ToInt32(p.position.x), Convert.ToInt32(p.position.y), 0), seawaterTile));
         SoundManager.Instance.PlaySingle(ClipsType.waterSpread);
         Map.Instance.GenerateOrgansOnMap();
         StartNextRound();

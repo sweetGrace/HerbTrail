@@ -24,5 +24,6 @@ public class ShowOverUI : MonoBehaviour
         startPanel.SetActive(false);
         gamePanel.SetActive(false);
         gameOverPanel.SetActive(true);
+        SoundManager.Instance.DisableManager();
     }
 }
