@@ -7,11 +7,11 @@ public class Ground : MonoBehaviour
     // Start is called before the first frame update
     public static int maxFertilityDegree { get; private set; } = 2;
     public static int resources;
-    public GroundType type { get; private set; }
-    public Lattice atLattice { get; private set; }
+    public GroundType type { get; set; }
+    public Lattice atLattice { get; set; }
     public int fertilityDegree { get; private set; } = 0;
     public bool isPlanted { get; private set; } = false;
-    public bool isInShadow { get; private set; }
+    public bool isInShadow { get; private set; } = false;
     //public Vector2 position { get { return transform.position; } }
     public void AddFertilityDegree(int dif){
         if(fertilityDegree + dif >= maxFertilityDegree)
