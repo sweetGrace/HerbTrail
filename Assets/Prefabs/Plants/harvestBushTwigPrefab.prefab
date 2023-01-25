@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1701404205228597538
+--- !u!1 &9210266718322468857
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3800393899655208411}
-  - component: {fileID: -4565087895250162729}
-  - component: {fileID: 1658626594866997981}
-  m_Layer: 7
-  m_Name: obstacleThornRootPrefab
+  - component: {fileID: 2958186060187348292}
+  - component: {fileID: -1323269468200454933}
+  - component: {fileID: 2329285699124610573}
+  m_Layer: 8
+  m_Name: harvestBushTwigPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3800393899655208411
+--- !u!4 &2958186060187348292
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701404205228597538}
+  m_GameObject: {fileID: 9210266718322468857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &-4565087895250162729
+--- !u!114 &-1323269468200454933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9210266718322468857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e57f43c1fb7c0aa44a63b07773526266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statePicRenderer: {fileID: 0}
+  stateWitheringPics:
+  - {fileID: 21300000, guid: 221cf2c987a68c74082c6dca883787f5, type: 3}
+  - {fileID: 21300000, guid: b0c6382db47b3c144bbbadc55e6d68ce, type: 3}
+  - {fileID: 21300000, guid: 929505a4992eee54283aaae7c8599a58, type: 3}
+  - {fileID: 21300000, guid: bfc62e31f271c5744ba3e6cffda3ccce, type: 3}
+  stateSpreadingPics:
+  - {fileID: 21300000, guid: 125e832bd58871b438fad9fb514173ea, type: 3}
+  - {fileID: 21300000, guid: 064242d359414a743bd5e7b6fb1a8392, type: 3}
+  - {fileID: 21300000, guid: ae95dae4c5681a94da7078bde91c134e, type: 3}
+  - {fileID: 21300000, guid: 3c3b10d659bb2ce4d985c7aa2e3b2134, type: 3}
+  isWithering: 0
+--- !u!212 &2329285699124610573
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701404205228597538}
+  m_GameObject: {fileID: 9210266718322468857}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,36 +96,14 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 95fbdc68298293a4c812c9db85d0f2e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 30992ebd8dcc0c04bb4dbbcf7f2d3dfd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.7, y: 3.3}
+  m_Size: {x: 0.5, y: 0.5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1658626594866997981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701404205228597538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae69dbe5d0f4c2049994b943c5664f9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  statePicRenderer: {fileID: 0}
-  statePics:
-  - {fileID: 21300000, guid: 92345c87bc1a08845828aaca7876e90c, type: 3}
-  - {fileID: 21300000, guid: f42411cc8c78fc34eafa3a04064ba507, type: 3}
-  - {fileID: 21300000, guid: a6c74222882e7d347ad704edbe7cef64, type: 3}
-  - {fileID: 21300000, guid: bac2a8e7b39fb7c4b9916c5026fd4ece, type: 3}
-  isPlanted: 0
-  isWithering: 1
-  isGenerating: 0
-  isGeneratingFruit: 0

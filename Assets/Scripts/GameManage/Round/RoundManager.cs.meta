@@ -3,7 +3,10 @@ guid: 5ebbf3ea7d1eb924a8660e4b1ef3e4ab
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tilemap: {instanceID: 0}
+  - seawaterTile: {instanceID: 0}
+  - plainTile: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

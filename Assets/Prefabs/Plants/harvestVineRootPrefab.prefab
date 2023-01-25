@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -4565087895250162729}
   - component: {fileID: 1658626594866997981}
   m_Layer: 7
-  m_Name: obstacleThornRootPrefab
+  m_Name: harvestVineRootPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 95fbdc68298293a4c812c9db85d0f2e3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 96c078b6b2889e24faeb13feedc9f3e5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,6 +102,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a6c74222882e7d347ad704edbe7cef64, type: 3}
   - {fileID: 21300000, guid: bac2a8e7b39fb7c4b9916c5026fd4ece, type: 3}
   isPlanted: 0
-  isWithering: 1
+  isWithering: 0
   isGenerating: 0
   isGeneratingFruit: 0

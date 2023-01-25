@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.Tilemaps;
 public class Map : MonoBehaviour
 {
     #region PRESETVALUE
@@ -21,6 +22,9 @@ public class Map : MonoBehaviour
     private double _P = 0.5;// water generate probability, the bigger the more possible 
 
     #endregion
+    public Tilemap tilemap;
+    public Tile seawaterTile;
+    public Tile plainTile;
     public List<Plant> plantSet;
     public List<PlantOrgan> generateOrganList = new List<PlantOrgan>();
     public List<Lattice> generateWaterList = new List<Lattice>();
@@ -265,7 +269,7 @@ public class Map : MonoBehaviour
                 }
             }
             //
-            RoundManager.Instance.StateUpdateInRound();//todo :check if correct
+            RoundManager.Instance.StateUpdateInRound();
         }
         else
         {
@@ -282,6 +286,15 @@ public class Map : MonoBehaviour
             return;
         }
         Instance = this;
+        Map.Instance.InitLattice();
+        for(int i = 0; i < 513; i++){
+            for(int j = 0; j < 513; j++){
+                if(latticeMap[i, j].ground.type == GroundType.seawater)
+                    tilemap.SetTile(new Vector3Int(i, j, 0), seawaterTile);
+                else if(latticeMap[i, j].ground.type == GroundType.plain)
+                    tilemap.SetTile(new Vector3Int(i, j, 0), plainTile);
+            }
+        }
     }
 
     // Update is called once per frame

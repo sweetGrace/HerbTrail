@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3800393899655208411}
   - component: {fileID: -4565087895250162729}
   - component: {fileID: 1658626594866997981}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: platformTreeRootPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
