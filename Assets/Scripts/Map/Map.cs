@@ -52,7 +52,6 @@ public class Map : MonoBehaviour
                 {
                     if (latticeMap[i, j].ground.type == GroundType.plain)
                         planeList.Add(latticeMap[i, j]);
-
                 }
             }
 
@@ -127,8 +126,6 @@ public class Map : MonoBehaviour
                 }
             }
         }
-
-
     }
     public void GenerateWaterOnMap()//generate predictive water lattice in a list
     {

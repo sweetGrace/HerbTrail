@@ -10,11 +10,6 @@ public class Lattice : MonoBehaviour
     public Ground ground;
     public List<PlantOrgan> plantOrgans { get; private set; }
     public Vector2 position { get; private set; }
-
-    public Lattice(Vector2 mpositon)
-    {
-        this.position = mpositon;
-    }
     #region DisplayInfo
     private GroundType _DisplayGroundType() { return ground.type; }
     private int _DisplayFertility() { return ground.fertilityDegree; }
@@ -39,11 +34,8 @@ public class Lattice : MonoBehaviour
     { //turn this into water
         if (this.IsWater()==0)
         {
-            //TODO destroy class
-            //clear plantorgan list
+            plantOrgans.ForEach(p => p.ClearMe());
             this.plantOrgans.Clear();
-
-            //turn ground into water
             ground.TurnWater();
         }
     }
