@@ -43,7 +43,7 @@ public class Map : MonoBehaviour
             Debug.LogError("Error at map.GeneratePlantsOnMap:Possibility sum more than 1");
             return;
         }
-        if (RoundManager.Instance.roundCount == 1)//TODO ********** dont know if correct *********
+        if (RoundManager.Instance.roundCount == 1)
         {
             List<Lattice> planeList = new List<Lattice>();
             for (int i = 0; i < 513; i++)
@@ -61,7 +61,14 @@ public class Map : MonoBehaviour
             else
             {
                 int r = new System.Random().Next(planeList.Count);
-                //TODO : generate on List[r] ,which is a lattice that is a plane that want to grow a platform on it
+                Plant tmpPlant = new Plant();
+                tmpPlant.InitMe(PlantType.platformTree);
+                Map.Instance.plantSet.Add(tmpPlant);
+                Root tmpRoot = new Root();
+                tmpPlant.plantOrgans.Add(tmpRoot);
+                tmpRoot.InitMe(2, tmpPlant, PlantType.platformTree, null, planeList[r], Vector2.zero, null);
+                PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.platformTree, (Vector3)planeList[r].position, Quaternion.identity)
+                .GetComponent<PlantOrgan>().InitMe(tmpRoot);
             }
 
         }
@@ -75,19 +82,47 @@ public class Map : MonoBehaviour
                     double t = random.NextDouble();
                     if (t < _pTreePossibility)
                     {
-                        //TODO Generate platform tree
+                        Plant tmpPlant = new Plant();
+                        tmpPlant.InitMe(PlantType.platformTree);
+                        Map.Instance.plantSet.Add(tmpPlant);
+                        Root tmpRoot = new Root();
+                        tmpPlant.plantOrgans.Add(tmpRoot);
+                        tmpRoot.InitMe(2, tmpPlant, PlantType.platformTree, null, latticeMap[i,j], Vector2.zero, null);
+                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.platformTree, (Vector3)latticeMap[i,j].position, Quaternion.identity)
+                        .GetComponent<PlantOrgan>().InitMe(tmpRoot);
                     }
                     else if (t < _pTreePossibility + _oThornPossibility)
                     {
-                        //TODO Generate obstacle Thorn
+                        Plant tmpPlant = new Plant();
+                        tmpPlant.InitMe(PlantType.obstacleThorn);
+                        Map.Instance.plantSet.Add(tmpPlant);
+                        Root tmpRoot = new Root();
+                        tmpPlant.plantOrgans.Add(tmpRoot);
+                        tmpRoot.InitMe(2, tmpPlant, PlantType.obstacleThorn, null, latticeMap[i,j], Vector2.zero, null);
+                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.obstacleThorn, (Vector3)latticeMap[i,j].position, Quaternion.identity)
+                        .GetComponent<PlantOrgan>().InitMe(tmpRoot);
                     }
                     else if (t < _pTreePossibility + _oThornPossibility + _hBushPossibility)
                     {
-                        //TODO Generate harvest bush
+                        Plant tmpPlant = new Plant();
+                        tmpPlant.InitMe(PlantType.harvestBush);
+                        Map.Instance.plantSet.Add(tmpPlant);
+                        Root tmpRoot = new Root();
+                        tmpPlant.plantOrgans.Add(tmpRoot);
+                        tmpRoot.InitMe(2, tmpPlant, PlantType.harvestBush, null, latticeMap[i,j], Vector2.zero, null);
+                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestBush, (Vector3)latticeMap[i,j].position, Quaternion.identity)
+                        .GetComponent<PlantOrgan>().InitMe(tmpRoot);
                     }
                     else if (t < _pTreePossibility + _oThornPossibility + _hBushPossibility + _hVinePossibility)
                     {
-                        //TODO Generate havest vine
+                        Plant tmpPlant = new Plant();
+                        tmpPlant.InitMe(PlantType.harvestVine);
+                        Map.Instance.plantSet.Add(tmpPlant);
+                        Root tmpRoot = new Root();
+                        tmpPlant.plantOrgans.Add(tmpRoot);
+                        tmpRoot.InitMe(2, tmpPlant, PlantType.harvestVine, null, latticeMap[i,j], Vector2.zero, null);
+                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestVine, (Vector3)latticeMap[i,j].position, Quaternion.identity)
+                        .GetComponent<PlantOrgan>().InitMe(tmpRoot);
                     }
                 }
             }

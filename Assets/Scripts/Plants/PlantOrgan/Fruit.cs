@@ -42,18 +42,22 @@ public class Fruit : PlantOrgan
         copyMe.InitMe(copyMe);
         this.layer = copyMe.layer;
         this.plant = copyMe.plant;
+        this.plant.plantOrgans.Add(this);
         this.fatherNode = copyMe.fatherNode;
         this.atLattice = copyMe.atLattice;
+        this.atLattice.plantOrgans.Add(this);
         this.relativeDirection = copyMe.relativeDirection;
         this.type = copyMe.type;
         this.fatherTwig = copyMe.fatherTwig;
     }
     public override void InitMe(int Layer, Plant Plant, PlantType mtype, PlantOrgan FatherNode, Lattice mlattice, Vector2 mrelativeDirection, Twig mfatherTwig){
-        mfatherTwig.InitMe(FatherNode);
+        mfatherTwig?.InitMe(FatherNode);
         this.layer = Layer;
         this.plant = Plant;
+        this.plant.plantOrgans.Add(this);
         this.fatherNode = FatherNode;
         this.atLattice = mlattice;
+        this.atLattice.plantOrgans.Add(this);
         this.relativeDirection = mrelativeDirection;
         this.type = mtype;
         this.fatherTwig = mfatherTwig;
@@ -66,7 +70,6 @@ public class Fruit : PlantOrgan
         return growingFlag;
     }
     public override List<PlantOrgan> GenerateFruits(){
-        //TODO ??
         List<PlantOrgan> generateList = new List<PlantOrgan>();
         this.isGeneratingFruit = true;
         return generateList;
@@ -95,6 +98,8 @@ public class Fruit : PlantOrgan
     }
     new public void Wither()//organ and all son wither
     {
+        if(isPlanted == false)
+            return;
         this.isWithering = true;
         ChangeStatePic(stateWitheringPics);
         if (twigsList.Count != 0)
@@ -111,6 +116,8 @@ public class Fruit : PlantOrgan
         }
     }
     new public void Harvest() {
+        if(isPlanted == false)
+            return;
         if(periodCount >= 1)
             PlayerInfo.Instance.AddResources(Convert.ToInt32(resourcesList.Where( p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0]/2));
     }

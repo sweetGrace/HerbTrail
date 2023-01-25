@@ -9,6 +9,9 @@ public class Plant : MonoBehaviour
     public List<PlantOrgan> plantOrgans;
     public PlantType type { get; private set;}
     public int Id { get; private set; }
+    public void InitMe(PlantType mtype){
+        this.type = mtype;
+    }
     private void Start() {
         this.Id = _IdCount++;
     }

@@ -43,7 +43,9 @@ public class RoundManager : MonoBehaviour {
         });
     }
     public void StartNextRound() {
-        //TODO plant generate
+        _currentRound++;
+        Map.Instance.GeneratePlantsOnMap();
+        CreateRange.Instance.CreateWarningRange();
         Map.Instance.generateOrganList.Where(q => q.layer == 1).ToList().ForEach(p => {
             Destroy(p.gameObject);
             p?.fatherNode?.twigsList.ForEach(r => r.ChangeStatePic(r.stateSpreadingPics));
