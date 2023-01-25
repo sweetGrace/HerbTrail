@@ -29,7 +29,7 @@ public class RoundManager : MonoBehaviour {
             return;
         }
         Instance = this;        
-        StartNextRound();
+        
     }
     public void StateUpdateInRound(){
         Map.Instance.GenerateOrgansOnMap();

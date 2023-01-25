@@ -362,12 +362,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49041619}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &128137176
 GameObject:
@@ -1391,7 +1391,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &548607046
 GameObject:
@@ -1435,7 +1435,7 @@ Transform:
   m_Children:
   - {fileID: 1928719364}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &569060867
 GameObject:
@@ -1533,7 +1533,7 @@ RectTransform:
   - {fileID: 423937384}
   - {fileID: 1671222555}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1740,7 +1740,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &849560606
 GameObject:
@@ -1852,22 +1852,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   picRenderer: {fileID: 0}
   statePics: []
-  platformTreeRootPrefab: {fileID: 0}
-  platformTreeBranchPrefab: {fileID: 0}
-  platformTreeFruitPrefab: {fileID: 0}
-  platformTreeTwigPrefab: {fileID: 0}
-  obstacleThornRootPrefab: {fileID: 0}
-  obstacleThornBranchPrefab: {fileID: 0}
-  obstacleThornFruitPrefab: {fileID: 0}
-  obstacleThornTwigPrefab: {fileID: 0}
-  harvestBushRootPrefab: {fileID: 0}
-  harvestBushBranchPrefab: {fileID: 0}
-  harvestBushFruitPrefab: {fileID: 0}
-  harvestBushTwigPrefab: {fileID: 0}
-  harvestVineRootPrefab: {fileID: 0}
-  harvestVineBranchPrefab: {fileID: 0}
-  harvestVineFruitPrefab: {fileID: 0}
-  harvestVineTwigPrefab: {fileID: 0}
+  platformTreeRootPrefab: {fileID: 1701404205228597538, guid: f866a40296964a546bac765766de823a, type: 3}
+  platformTreeBranchPrefab: {fileID: 7063175523597892758, guid: d8b461411e91bce4687cec51caead773, type: 3}
+  platformTreeFruitPrefab: {fileID: 4901471346505932597, guid: 4195cebb680bf574ca432b598fe8d6d8, type: 3}
+  platformTreeTwigPrefab: {fileID: 9210266718322468857, guid: 8ab08b3c175398d4690d3c8c178a8a9b, type: 3}
+  obstacleThornRootPrefab: {fileID: 1701404205228597538, guid: f02b14fedab504f47995d2a62be157cf, type: 3}
+  obstacleThornBranchPrefab: {fileID: 7063175523597892758, guid: 74effc38816e5744d9b86ecab1d2c3a7, type: 3}
+  obstacleThornFruitPrefab: {fileID: 4901471346505932597, guid: cd9e5d9b07aa11b4ebda097969e70d39, type: 3}
+  obstacleThornTwigPrefab: {fileID: 9210266718322468857, guid: 9541cf0895854654bbf6402ef984e956, type: 3}
+  harvestBushRootPrefab: {fileID: 1701404205228597538, guid: 2191c4ff77c3b754d9031b5d08d06e70, type: 3}
+  harvestBushBranchPrefab: {fileID: 7063175523597892758, guid: d6e81bc90ccbf514ea5192488f3de92d, type: 3}
+  harvestBushFruitPrefab: {fileID: 4901471346505932597, guid: 06769bd25b4ab6f4b98a2ce9f251c7ec, type: 3}
+  harvestBushTwigPrefab: {fileID: 9210266718322468857, guid: f700908dde6ebee47a5402899bcedf7d, type: 3}
+  harvestVineRootPrefab: {fileID: 1701404205228597538, guid: e45f81ae635489543851e3c32d6fefe2, type: 3}
+  harvestVineBranchPrefab: {fileID: 7063175523597892758, guid: b7f682df754713d44b4f294eab1e36d0, type: 3}
+  harvestVineFruitPrefab: {fileID: 4901471346505932597, guid: a13c6c5a7bd833648906b8b87dc6392d, type: 3}
+  harvestVineTwigPrefab: {fileID: 9210266718322468857, guid: a759f14a38e703c42bc97e7d2f8023e3, type: 3}
 --- !u!4 &861460745
 Transform:
   m_ObjectHideFlags: 0
@@ -1880,7 +1880,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &880973013
 GameObject:
@@ -2198,6 +2198,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937363965}
   m_CullTransparentMesh: 1
+--- !u!1 &942601345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 942601347}
+  - component: {fileID: 942601346}
+  m_Layer: 0
+  m_Name: GameStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &942601346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942601345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d9035a0b79630142a018fb338f8dbc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &942601347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942601345}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1013351519
 GameObject:
   m_ObjectHideFlags: 0
@@ -2930,7 +2973,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1407903817
 GameObject:
@@ -3478,7 +3521,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1681265637
 AudioSource:

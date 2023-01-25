@@ -28,7 +28,7 @@ public class Map : MonoBehaviour
     public List<Plant> plantSet;
     public List<PlantOrgan> generateOrganList = new List<PlantOrgan>();
     public List<Lattice> generateWaterList = new List<Lattice>();
-    public Lattice[,] latticeMap = new Lattice[513, 513];//each quadrant is 256*256
+    public Lattice[,] latticeMap;//each quadrant is 256*256
     public static Map Instance { get; private set; } = null;
     public void InitLattice()
     {
@@ -285,6 +285,7 @@ public class Map : MonoBehaviour
             Debug.LogError("Map already exists.");
             return;
         }
+        this.latticeMap = new Lattice[513, 513];
         Instance = this;
         Map.Instance.InitLattice();
         for(int i = 0; i < 513; i++){
