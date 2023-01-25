@@ -39,7 +39,7 @@ public class Lattice : MonoBehaviour
     { //turn this into water
         if (this.IsWater()==0)
         {
-            //to destroy class
+            //TODO destroy class
             //clear plantorgan list
             this.plantOrgans.Clear();
 

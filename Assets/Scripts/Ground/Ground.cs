@@ -24,7 +24,7 @@ public class Ground : MonoBehaviour
             fertilityDegree += dif;
     }
 
-    public void TurnPlain()//turn int plain
+    public void TurnPlain()//turn into plain
     {
         type = GroundType.plain;
         fertilityDegree = 0;

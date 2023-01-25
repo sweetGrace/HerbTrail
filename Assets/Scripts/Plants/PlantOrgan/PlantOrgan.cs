@@ -141,19 +141,26 @@ public abstract class PlantOrgan : MonoBehaviour
         if (layer == 1)
         {
             this.Wither();
-            //to destroy class
+            //TODO destroy class
+            //destroy myself
             //lattice.plantOrgans.Remove(this);
+            //
         }
         if (layer == 2)
         {
             this.Fall();
-            //to destroy class
+            //TODO destroy class
+            //destroy myself
             //lattice.plantOrgans.Remove(this);
+            //
         }
     }
     public void Wither()//organ and all son wither
     {
         this.isWithering= true;
+        ChangeStatePic();
+        foreach(var a in twigsList)
+            a.Wither();
         if (spreadOrgans.Count()!= 0)
         {
             foreach (PlantOrgan organ in spreadOrgans)
@@ -164,7 +171,7 @@ public abstract class PlantOrgan : MonoBehaviour
     }
     public void Fall()//organ and all son wither
     {
-        //to destroy class
+        //TODO destroy class
         lattice.ground.TurnPlain();
         //lattice.plantOrgans.Clear();
         if (spreadOrgans.Count()!= 0)

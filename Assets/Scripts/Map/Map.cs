@@ -5,13 +5,29 @@ using System.Linq;
 using System;
 public class Map : MonoBehaviour
 {
+    #region PRESETVALUE
+    //planst generate possbilities
+    [Range(0, 1)]
+    private double _pTreePossibility = 0.1;
+    [Range(0, 1)]
+    private double _oThornPossibility = 0.3;
+    [Range(0, 1)]
+    private double _hBushPossibility = 0.2;
+    [Range(0, 1)]
+    private double _hVinePossibility = 0.2;
+    //
+    [Range(0, 1)]
+    private double _P = 0.5;// water generate probability, the bigger the more possible 
+
+    #endregion
     public List<Plant> plantSet;
     public List<PlantOrgan> generateOrganList = new List<PlantOrgan>();
     public List<Lattice> generateWaterList = new List<Lattice>();
     public Lattice[,] latticeMap = new Lattice[513, 513];//each quadrant is 256*256
     public static Map Instance { get; private set; } = null;
-    private double _P = 0.5;// water generate probability, the bigger the more possible 
-    public void GenerateOrgansOnMap(){
+
+    public void GenerateOrgansOnMap()
+    {
         generateOrganList.Clear();
         plantSet.ForEach(p => p.plantOrgans.ForEach(q => generateOrganList.AddRange(q.spreadOrgans
         .Where(r => r.isPlanted == false && latticeMap[Convert.ToInt32(r.atLattice.position.x), Convert.ToInt32(r.atLattice.position.y)].ground.type != GroundType.seawater
@@ -20,19 +36,70 @@ public class Map : MonoBehaviour
         generateOrganList.Where(u => Convert.ToInt32(u.atLattice.position.x) == Convert.ToInt32(r.atLattice.position.x) &&
         Convert.ToInt32(u.atLattice.position.y) == Convert.ToInt32(r.atLattice.position.y)).ToList().Count == 0).ToList().Count == 0)))));
     }
-    public void PutOrgansOnMap()
+    public void GeneratePlantsOnMap()
     {
-        foreach(var p in generateOrganList)
+        if (_pTreePossibility + _oThornPossibility + _hBushPossibility + _hVinePossibility > 1)
         {
-            //bound some canshu
+            Debug.LogError("Error at map.GeneratePlantsOnMap:Possibility sum more than 1");
+            return;
         }
+        if (RoundManager.Instance.roundCount == 1)//TODO ********** dont know if correct *********
+        {
+            List<Lattice> planeList = new List<Lattice>();
+            for (int i = 0; i < 513; i++)
+            {
+                for (int j = 0; j < 513; j++)
+                {
+                    if (latticeMap[i, j].ground.type == GroundType.plain)
+                        planeList.Add(latticeMap[i, j]);
+
+                }
+            }
+
+            if (planeList.Count == 0)
+                Debug.LogError("Error at map.GeneratePlantsOnMap:nowhere to plant on 1 round");
+            else
+            {
+                int r = new System.Random().Next(planeList.Count);
+                //TODO : generate on List[r] ,which is a lattice that is a plane that want to grow a platform on it
+            }
+
+        }
+        for (int i = 0; i < 513; i++)
+        {
+            for (int j = 0; j < 513; j++)
+            {
+                if (latticeMap[i, j].ground.type == GroundType.plain)
+                {
+                    System.Random random = new System.Random();
+                    double t = random.NextDouble();
+                    if (t < _pTreePossibility)
+                    {
+                        //TODO Generate platform tree
+                    }
+                    else if (t < _pTreePossibility + _oThornPossibility)
+                    {
+                        //TODO Generate obstacle Thorn
+                    }
+                    else if (t < _pTreePossibility + _oThornPossibility + _hBushPossibility)
+                    {
+                        //TODO Generate harvest bush
+                    }
+                    else if (t < _pTreePossibility + _oThornPossibility + _hBushPossibility + _hVinePossibility)
+                    {
+                        //TODO Generate havest vine
+                    }
+                }
+            }
+        }
+
+
     }
     public void GenerateWaterOnMap()//generate predictive water lattice in a list
     {
         generateWaterList.Clear();
         for (int i = 1; i < 512; i++)
         {
-            
             for (int j = 1; j < 512; j++)
             {
                 //each of these number refers to the lattices adjacent to the center
@@ -45,20 +112,20 @@ public class Map : MonoBehaviour
                 int a7 = latticeMap[i - 1, j + 1].IsWater();//bottom left
                 int a8 = latticeMap[i, j + 1].IsWater();//bottom
                 int a9 = latticeMap[i + 1, j + 1].IsWater();//bottom right
-                if (a5==0&& latticeMap[i, j].plantOrgans.Exists(p => p.type== PlantType.obstacleThorn))
+                if (a5 == 0 && latticeMap[i, j].plantOrgans.Exists(p => p.type == PlantType.obstacleThorn))
                 {
                     //cross have two ("L" and "---")
-                    if (a2+a4+a6+a8>=2)
+                    if (a2 + a4 + a6 + a8 >= 2)
                     {
                         generateWaterList.Add(latticeMap[i, j]);
                     }
                     //diagonal "\" and "/"
-                    else if (a1+a9==2||a3+a7==2)
+                    else if (a1 + a9 == 2 || a3 + a7 == 2)
                     {
                         generateWaterList.Add(latticeMap[i, j]);
                     }
                     // threesome
-                    else if (a1+a2+a3==3||a1+a4+a7==3||a3+a6+a9==3||a7+a8+a9==3)
+                    else if (a1 + a2 + a3 == 3 || a1 + a4 + a7 == 3 || a3 + a6 + a9 == 3 || a7 + a8 + a9 == 3)
                     {
                         System.Random random = new System.Random();
                         if (random.NextDouble() < _P)
@@ -73,7 +140,7 @@ public class Map : MonoBehaviour
     }
     public void PutWaterOnMap()
     {
-        foreach( var p in generateWaterList)
+        foreach (var p in generateWaterList)
         {
             p.Watered();
         }
@@ -83,13 +150,14 @@ public class Map : MonoBehaviour
         foreach (var lattice in Map.Instance.latticeMap)
         {
             List<PlantOrgan> witheringList = lattice.plantOrgans.Where(organ => organ.isWithering == true).ToList();
-            witheringList.ForEach(organ => {
+            witheringList.ForEach(organ =>
+            {
                 organ.twigsList.ForEach(p => Destroy(p.gameObject));
                 Destroy(organ.gameObject);
                 lattice.plantOrgans.Remove(organ);
             });
             lattice.ground.AddFertilityDegree(witheringList.Count);
-            
+
         }
     }
 
@@ -144,6 +212,7 @@ public class Map : MonoBehaviour
                 }
             }
             //
+            RoundManager.Instance.StateUpdateInRound();//todo :check if correct
         }
         else
         {
