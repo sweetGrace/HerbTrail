@@ -18,6 +18,11 @@ public class Twig : MonoBehaviour
     public void InitMe(PlantOrgan mfatherNode){
         this.fatherNode = mfatherNode;
     }
+    public void Wither()
+    { 
+        isWithering = true;
+        ChangeStatePic(stateWitheringPics)
+    }
     // Start is called before the first frame update
     void Start()
     {
