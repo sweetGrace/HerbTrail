@@ -13,10 +13,6 @@ public class Ground : MonoBehaviour
     public bool isPlanted { get; private set; } = false;
     public bool isInShadow { get; private set; }
     //public Vector2 position { get { return transform.position; } }
-    public Ground(GroundType mtype, Lattice mlattice){
-        this.type = mtype;
-        this.atLattice = mlattice;
-    }
     public void AddFertilityDegree(int dif){
         if(fertilityDegree + dif >= maxFertilityDegree)
             fertilityDegree = maxFertilityDegree;
