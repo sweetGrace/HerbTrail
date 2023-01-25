@@ -28,22 +28,26 @@ public class Map : MonoBehaviour
     public List<Plant> plantSet;
     public List<PlantOrgan> generateOrganList = new List<PlantOrgan>();
     public List<Lattice> generateWaterList = new List<Lattice>();
-    public Lattice[,] latticeMap;//each quadrant is 256*256
+    public Lattice[,] latticeMap = new Lattice[513, 513];//each quadrant is 256*256
     public static Map Instance { get; private set; } = null;
     public void InitLattice()
-    {
+    { 
         for (int i = 0; i < 513; i++)
         {
             for (int j = 0; j < 513; j++)
             {
-                if(i<256- _initialRange||i>256+ _initialRange||j<256- _initialRange||j>256+ _initialRange)
+                if(i < 256 - _initialRange || i > 256 + _initialRange || j < 256 - _initialRange || j > 256 + _initialRange)
                 {
+                    latticeMap[i, j] = new Lattice();
+                    latticeMap[i,j].ground = new Seawater();
                     latticeMap[i,j].ground.type = GroundType.seawater;
                     latticeMap[i,j].ground.atLattice = latticeMap[i,j];
                     latticeMap[i, j].position = new Vector2(i, j);
                 }
                 else
                 {
+                    latticeMap[i, j] = new Lattice();
+                    latticeMap[i,j].ground = new Plain();
                     latticeMap[i,j].ground.type = GroundType.plain;
                     latticeMap[i,j].ground.atLattice = latticeMap[i,j];
                     latticeMap[i, j].position = new Vector2(i, j);
@@ -285,7 +289,6 @@ public class Map : MonoBehaviour
             Debug.LogError("Map already exists.");
             return;
         }
-        this.latticeMap = new Lattice[513, 513];
         Instance = this;
         Map.Instance.InitLattice();
         for(int i = 0; i < 513; i++){
