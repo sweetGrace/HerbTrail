@@ -33,10 +33,10 @@ public class Map : MonoBehaviour
     public void InitLattice()
 
     {
-        for (int i = 0; i < _maxMap+1; i++)
+        for (int i = 0; i < _maxMap + 1; i++)
 
         {
-            for (int j = 0; j < _maxMap+1; j++)
+            for (int j = 0; j < _maxMap + 1; j++)
             {
                 if(i< _maxMap /2- _initialRange||i> _maxMap /2+ _initialRange||j< _maxMap /2- _initialRange||j> _maxMap /2+ _initialRange)
                 {
@@ -293,8 +293,8 @@ public class Map : MonoBehaviour
         }
         Instance = this;
         Map.Instance.InitLattice();
-        for(int i = 0; i < 513; i++){
-            for(int j = 0; j < 513; j++){
+        for(int i = 0; i < _maxMap + 1; i++){
+            for(int j = 0; j < _maxMap + 1; j++){
                 if(latticeMap[i, j].ground.type == GroundType.seawater)
                     tilemap.SetTile(new Vector3Int(i, j, 0), seawaterTile);
                 else if(latticeMap[i, j].ground.type == GroundType.plain)
