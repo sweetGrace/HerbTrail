@@ -7,14 +7,9 @@ public class Lattice : MonoBehaviour
 {
     public static List<Vector2> directionList { get; private set; }
     = new List<Vector2> { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
-    public Ground ground = new Ground();
+    public Ground ground;
     public List<PlantOrgan> plantOrgans { get; private set; } = new List<PlantOrgan>();
     public Vector2 position { get; set; }
-
-    public Lattice(Vector2 mpositon)
-    {
-        this.position = mpositon;
-    }
     #region DisplayInfo
     private GroundType _DisplayGroundType() { return ground.type; }
     private int _DisplayFertility() { return ground.fertilityDegree; }

@@ -27,6 +27,7 @@ public class Root : PlantOrgan
         this.plant.plantOrgans.Add(this);
         this.fatherNode = copyMe.fatherNode;
         this.atLattice = copyMe.atLattice;
+        this.atLattice.plantOrgans.Add(this);
         this.relativeDirection = copyMe.relativeDirection;
         this.type = copyMe.type;
         this.fatherTwig = copyMe.fatherTwig;

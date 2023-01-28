@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using UnityEngine.Tilemaps;
 public class Map : MonoBehaviour
 {
     #region PRESETVALUE
@@ -21,25 +22,34 @@ public class Map : MonoBehaviour
     private double _P = 0.5;// water generate probability, the bigger the more possible 
 
     #endregion
+    public Tilemap tilemap;
+    public Tile seawaterTile;
+    public Tile plainTile;
     public List<Plant> plantSet;
     public List<PlantOrgan> generateOrganList = new List<PlantOrgan>();
     public List<Lattice> generateWaterList = new List<Lattice>();
     public Lattice[,] latticeMap = new Lattice[_maxMap+1, _maxMap+1];//each quadrant is _maxMap/2*_maxMap/2
     public static Map Instance { get; private set; } = null;
     public void InitLattice()
+
     {
         for (int i = 0; i < _maxMap+1; i++)
+
         {
             for (int j = 0; j < _maxMap+1; j++)
             {
                 if(i< _maxMap /2- _initialRange||i> _maxMap /2+ _initialRange||j< _maxMap /2- _initialRange||j> _maxMap /2+ _initialRange)
                 {
+                    latticeMap[i, j] = new Lattice();
+                    latticeMap[i,j].ground = new Seawater();
                     latticeMap[i,j].ground.type = GroundType.seawater;
                     latticeMap[i,j].ground.atLattice = latticeMap[i,j];
                     latticeMap[i, j].position = new Vector2(i, j);
                 }
                 else
                 {
+                    latticeMap[i, j] = new Lattice();
+                    latticeMap[i,j].ground = new Plain();
                     latticeMap[i,j].ground.type = GroundType.plain;
                     latticeMap[i,j].ground.atLattice = latticeMap[i,j];
                     latticeMap[i, j].position = new Vector2(i, j);
@@ -265,7 +275,7 @@ public class Map : MonoBehaviour
                 }
             }
             //
-            RoundManager.Instance.StateUpdateInRound();//todo :check if correct
+            RoundManager.Instance.StateUpdateInRound();
         }
         else
         {
@@ -282,6 +292,15 @@ public class Map : MonoBehaviour
             return;
         }
         Instance = this;
+        Map.Instance.InitLattice();
+        for(int i = 0; i < 513; i++){
+            for(int j = 0; j < 513; j++){
+                if(latticeMap[i, j].ground.type == GroundType.seawater)
+                    tilemap.SetTile(new Vector3Int(i, j, 0), seawaterTile);
+                else if(latticeMap[i, j].ground.type == GroundType.plain)
+                    tilemap.SetTile(new Vector3Int(i, j, 0), plainTile);
+            }
+        }
     }
 
     // Update is called once per frame

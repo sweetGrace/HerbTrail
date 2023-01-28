@@ -32,7 +32,7 @@ public abstract class PlantOrgan : MonoBehaviour
     public Twig fatherTwig {get; protected set;}
     public List<PlantOrgan> spreadOrgans {get; protected set;}
     public bool isPlanted = false ;
-    public bool isWithering = true;
+    public bool isWithering = false;
     public bool isGenerating = false;
     public bool isGeneratingFruit = false;
     public int resources { get; protected set;}

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class Ground : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -26,6 +26,7 @@ public class Ground : MonoBehaviour
         fertilityDegree = 0;
         isPlanted = false;
         isInShadow = false;
+        Map.Instance.tilemap.SetTile(new Vector3Int(Convert.ToInt32(atLattice.position.x), Convert.ToInt32(atLattice.position.y), 0), Map.Instance.plainTile);
 
     }
 
@@ -34,5 +35,6 @@ public class Ground : MonoBehaviour
         type = GroundType.seawater;
         fertilityDegree = 0;
         isPlanted = false;
+        Map.Instance.tilemap.SetTile(new Vector3Int(Convert.ToInt32(atLattice.position.x), Convert.ToInt32(atLattice.position.y), 0), Map.Instance.seawaterTile);
     }
 }

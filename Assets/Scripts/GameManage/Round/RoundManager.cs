@@ -14,13 +14,13 @@ public class RoundManager : MonoBehaviour {
     public float Vector2Quaternion(Vector2 i){
         float ans;
         if(Vector2.up == i)
-            ans = 0;
-        else if(Vector2.left == i)
-            ans = 270;
-        else if(Vector2.down == i)
             ans = 180;
-        else   
+        else if(Vector2.left == i)
             ans = 90;
+        else if(Vector2.down == i)
+            ans = 0;
+        else   
+            ans = 270;
         return ans;
     }
     private void Start() {
@@ -28,8 +28,8 @@ public class RoundManager : MonoBehaviour {
             Debug.LogError("RoundManager already exists.");
             return;
         }
-        Instance = this;
-        StartNextRound();
+        Instance = this;        
+        
     }
     public void StateUpdateInRound(){
         Map.Instance.GenerateOrgansOnMap();

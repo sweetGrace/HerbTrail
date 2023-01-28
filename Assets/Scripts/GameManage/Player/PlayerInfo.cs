@@ -8,7 +8,7 @@ public class PlayerInfo : MonoBehaviour
 {
     public int resources{ get; private set; } = 100;
     public int maxResources{ get; set; } = 100;
-    public int seed { get; private set; } = UnityEngine.Random.Range(1,10000000);
+    public int seed { get; private set; }
     public int currentLayer{ get; private set; }
     public string playerName{ get; private set; }
     public int baseHarvestCost{ get; private set; } = 5;
@@ -60,6 +60,7 @@ public class PlayerInfo : MonoBehaviour
             return;
         }
         Instance = this;
+        this.seed = UnityEngine.Random.Range(1,10000000);
         currentRoundCostResources = baseRoundCostResources;
         UnityEngine.Random.InitState(seed);
     }
