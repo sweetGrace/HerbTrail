@@ -33,10 +33,10 @@ public class Map : MonoBehaviour
     public void InitLattice()
 
     {
-        for (int i = 0; i < _maxMap+1; i++)
+        for (int i = 0; i < _maxMap + 1; i++)
 
         {
-            for (int j = 0; j < _maxMap+1; j++)
+            for (int j = 0; j < _maxMap + 1; j++)
             {
                 if(i< _maxMap /2- _initialRange||i> _maxMap /2+ _initialRange||j< _maxMap /2- _initialRange||j> _maxMap /2+ _initialRange)
                 {
