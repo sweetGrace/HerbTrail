@@ -21,7 +21,7 @@ public class Branch : PlantOrgan
     public Branch(int Layer, int PlantId, PlantType mtype, PlantOrgan FatherNode, Lattice mlattice, Vector2 mrelativeDirection): 
     base(Layer, PlantId, mtype, FatherNode, mlattice, mrelativeDirection){}*/
     public override void InitMe(PlantOrgan copyMe){
-        copyMe.InitMe(copyMe);
+        copyMe.fatherTwig?.InitMe(copyMe.fatherNode);
         this.layer = copyMe.layer;
         this.plant = copyMe.plant;
         this.plant.plantOrgans.Add(this);

@@ -51,7 +51,7 @@ public abstract class PlantOrgan : MonoBehaviour
         this.type = mtype;
     }//Don't use constructed function when Classes is inheriting from base classes
 */  public virtual void InitMe(PlantOrgan copyMe){
-        copyMe.InitMe(copyMe);
+        copyMe.fatherTwig?.InitMe(copyMe.fatherNode);
         this.layer = copyMe.layer;
         this.plant = copyMe.plant;
         this.plant.plantOrgans.Add(this);

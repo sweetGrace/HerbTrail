@@ -21,7 +21,7 @@ public class Root : PlantOrgan
     public Root(int Layer, int PlantId, PlantType mtype, Lattice mlattice, Vector2 mrelativeDirection): 
     base(Layer, PlantId, mtype, null, mlattice, mrelativeDirection){}*/
     public override void InitMe(PlantOrgan copyMe){
-        copyMe.InitMe(copyMe);
+        //copyMe.fatherTwig?.InitMe(copyMe.fatherNode);
         this.layer = copyMe.layer;
         this.plant = copyMe.plant;
         this.plant.plantOrgans.Add(this);
@@ -33,7 +33,7 @@ public class Root : PlantOrgan
         this.fatherTwig = copyMe.fatherTwig;
     }
     public override void InitMe(int Layer, Plant Plant, PlantType mtype, PlantOrgan FatherNode, Lattice mlattice, Vector2 mrelativeDirection, Twig mfatherTwig){
-        mfatherTwig?.InitMe(FatherNode);
+        //mfatherTwig?.InitMe(FatherNode);
         this.layer = Layer;
         this.plant = Plant;
         this.plant.plantOrgans.Add(this);

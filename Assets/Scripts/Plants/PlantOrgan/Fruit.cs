@@ -39,7 +39,7 @@ public class Fruit : PlantOrgan
         statePicRenderer.sprite = pics[(int)this.type];
     }
     public override void InitMe(PlantOrgan copyMe){
-        copyMe.InitMe(copyMe);
+        copyMe.fatherTwig?.InitMe(copyMe.fatherNode);
         this.layer = copyMe.layer;
         this.plant = copyMe.plant;
         this.plant.plantOrgans.Add(this);
