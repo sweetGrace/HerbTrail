@@ -97,7 +97,7 @@ public class Map : MonoBehaviour
                 Root tmpRoot = new Root();
                 tmpPlant.plantOrgans.Add(tmpRoot);
                 tmpRoot.InitMe(2, tmpPlant, PlantType.platformTree, null, planeList[r], Vector2.zero, null);
-                PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.platformTree, (Vector3)planeList[r].position, Quaternion.identity)
+                PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.platformTree, tilemap.CellToWorld(new Vector3Int(Convert.ToInt32(planeList[r].position.x), Convert.ToInt32(planeList[r].position.y), 0)), Quaternion.identity)
                 .GetComponent<PlantOrgan>().InitMe(tmpRoot);
             }
 
@@ -118,7 +118,7 @@ public class Map : MonoBehaviour
                         Root tmpRoot = new Root();
                         tmpPlant.plantOrgans.Add(tmpRoot);
                         tmpRoot.InitMe(2, tmpPlant, PlantType.platformTree, null, latticeMap[i,j], Vector2.zero, null);
-                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.platformTree, (Vector3)latticeMap[i,j].position, Quaternion.identity)
+                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.platformTree, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
                         .GetComponent<PlantOrgan>().InitMe(tmpRoot);
                     }
                     else if (t < _pTreePossibility + _oThornPossibility)
@@ -129,7 +129,7 @@ public class Map : MonoBehaviour
                         Root tmpRoot = new Root();
                         tmpPlant.plantOrgans.Add(tmpRoot);
                         tmpRoot.InitMe(2, tmpPlant, PlantType.obstacleThorn, null, latticeMap[i,j], Vector2.zero, null);
-                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.obstacleThorn, (Vector3)latticeMap[i,j].position, Quaternion.identity)
+                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.obstacleThorn, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
                         .GetComponent<PlantOrgan>().InitMe(tmpRoot);
                     }
                     else if (t < _pTreePossibility + _oThornPossibility + _hBushPossibility)
@@ -140,7 +140,7 @@ public class Map : MonoBehaviour
                         Root tmpRoot = new Root();
                         tmpPlant.plantOrgans.Add(tmpRoot);
                         tmpRoot.InitMe(2, tmpPlant, PlantType.harvestBush, null, latticeMap[i,j], Vector2.zero, null);
-                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestBush, (Vector3)latticeMap[i,j].position, Quaternion.identity)
+                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestBush, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
                         .GetComponent<PlantOrgan>().InitMe(tmpRoot);
                     }
                     else if (t < _pTreePossibility + _oThornPossibility + _hBushPossibility + _hVinePossibility)
@@ -151,7 +151,7 @@ public class Map : MonoBehaviour
                         Root tmpRoot = new Root();
                         tmpPlant.plantOrgans.Add(tmpRoot);
                         tmpRoot.InitMe(2, tmpPlant, PlantType.harvestVine, null, latticeMap[i,j], Vector2.zero, null);
-                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestVine, (Vector3)latticeMap[i,j].position, Quaternion.identity)
+                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestVine, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
                         .GetComponent<PlantOrgan>().InitMe(tmpRoot);
                     }
                 }
@@ -296,8 +296,10 @@ public class Map : MonoBehaviour
         for(int i = 0; i < _maxMap + 1; i++){
             for(int j = 0; j < _maxMap + 1; j++){
                 if(latticeMap[i, j].ground.type == GroundType.seawater)
+                    //tilemap.SetTile(new Vector3Int(i - _maxMap /2, j - _maxMap /2, 0), seawaterTile);
                     tilemap.SetTile(new Vector3Int(i, j, 0), seawaterTile);
                 else if(latticeMap[i, j].ground.type == GroundType.plain)
+                    //tilemap.SetTile(new Vector3Int(i - _maxMap /2, j - _maxMap /2, 0), plainTile);
                     tilemap.SetTile(new Vector3Int(i, j, 0), plainTile);
             }
         }
