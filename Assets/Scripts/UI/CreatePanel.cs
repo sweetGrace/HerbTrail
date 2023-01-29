@@ -35,6 +35,10 @@ public class CreatePanel : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject != null)
+            {
+                return;
+            }
             currentLayer = PlayerInfo.Instance.currentLayer;
 
             worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

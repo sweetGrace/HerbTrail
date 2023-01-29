@@ -1422,7 +1422,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!114 &569060869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2188,7 +2188,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u672C\u6B21\u6536\u83B7\u6D88\u8017\u9965\u997F\u5EA6\uFF1A10"
+  m_Text: "\u672C\u6B21\u6536\u83B7\u6D88\u8017\u9965\u997F\u5EA6\uFF1A"
 --- !u!222 &1014807355
 CanvasRenderer:
   m_ObjectHideFlags: 0
