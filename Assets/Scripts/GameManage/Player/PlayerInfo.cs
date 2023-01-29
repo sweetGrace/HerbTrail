@@ -9,13 +9,13 @@ public class PlayerInfo : MonoBehaviour
     public int resources{ get; private set; } = 100;
     public int maxResources{ get; set; } = 100;
     public int seed { get; private set; }
-    public int currentLayer{ get; private set; }
+    public int currentLayer{ get; private set; } = 1;
     public string playerName{ get; private set; }
     public int baseHarvestCost{ get; private set; } = 5;
     public int currentHarvestCost{ get; private set; } = 5;
     public int harvestCount{ get; private set; } = 0;
     public int baseRoundCostResources{ get; private set; } = 10;
-    public int currentRoundCostResources { get; private set; } = 10;
+    public int currentRoundCostResources{ get; private set; } = 10;
     public int layerHeight{ get; private set; } = 10;
     public static PlayerInfo Instance { get; private set; } = null;
     public void AddResources(int dif){
@@ -36,9 +36,24 @@ public class PlayerInfo : MonoBehaviour
         Action<int, int> SwitchTransparent = (a, b) =>{//a becomes transparent and b becomes opposite
             Map.Instance.plantSet.ForEach(p => {
                 p.plantOrgans.Where(q => q.layer == a).ToList()
-                .ForEach(r => r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, 0.3f));
+                .ForEach(r => {
+                    if(r.statePicRenderer == null) 
+                        Debug.Log("null");
+                    if(r.gameObject == null)
+                        Debug.Log("gb null");
+                        r.statePicRenderer = r.gameObject.GetComponent<SpriteRenderer>();
+                    r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, 0.3f);
+                    });
                 p.plantOrgans.Where(q => q.layer == b).ToList()
-                .ForEach(r => r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, 1f));
+                .ForEach(r =>{
+                    if(r.statePicRenderer == null) 
+                        Debug.Log("null");
+                    if(r.gameObject == null)
+                        Debug.Log("gb null");
+                        r.statePicRenderer = r.gameObject.GetComponent<SpriteRenderer>();
+                    r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, 0.3f);
+                    });
+                
             });
         };
         if(currentLayer == 1){
