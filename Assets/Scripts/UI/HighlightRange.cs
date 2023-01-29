@@ -14,11 +14,6 @@ public class HighlightRange : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public List<Vector2Int> positions;
 
-    //private void Start()
-    //{
-    //    Debug.Log(this.gameObject.name);
-    //}
-
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (this.transform.parent.localScale.x > 0.9)
@@ -35,10 +30,13 @@ public class HighlightRange : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     public void OnPointerExit(PointerEventData eventData)
     {
 
-        foreach (Image i in images)
+        if(images != null)
         {
-            Destroy(i.gameObject);
+            foreach (Image i in images)
+            {
+                Destroy(i.gameObject);
+            }
+            images.Clear();
         }
-        images.Clear();
     }
 }

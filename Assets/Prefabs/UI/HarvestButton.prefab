@@ -290,7 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b04929a75fb2224fbeeca66846826af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightImage: {fileID: 0}
+  highlightImage: {fileID: 7449212114489909397, guid: b104ad95b862acd4ebff56f586e10f93, type: 3}
   positions: []
 --- !u!1 &7310168991583959247
 GameObject:

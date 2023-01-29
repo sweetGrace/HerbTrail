@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 4617174010396043273}
   - component: {fileID: 3383844505768055941}
   - component: {fileID: 3634259309280408198}
+  - component: {fileID: 8925860396695252864}
   m_Layer: 5
   m_Name: HarvestPanel
   m_TagString: Untagged
@@ -315,3 +316,15 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   animationSpeed: 3
+--- !u!225 &8925860396695252864
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347738086263823534}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0

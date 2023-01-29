@@ -114,13 +114,14 @@ public class CreatePanel : MonoBehaviour
     public void CreateHarvestPanel()
     {
         SoundManager.Instance.PlaySingle(ClipsType.select);
-
         CreateHervestButton();
 
         foreach(PlantOrgan o in currentLayerOrgans)
         {
             if(o != null)
             {
+                RangePosition(o);
+                Debug.Log(organPositions);
                 CreateHervestButton(o);
             }
         }
@@ -136,7 +137,7 @@ public class CreatePanel : MonoBehaviour
         
         if(organ != null)
         {
-            range.positions = organPositions;
+            range.positions= organPositions;
             organPositions.Clear();
             //harvestText.text = organ.type.ToString() + "'s" + organ.OrganType.ToString();
             harvestText.text = organ.OrganType.ToString();
@@ -173,7 +174,7 @@ public class CreatePanel : MonoBehaviour
 
     public void RangePosition(PlantOrgan organ)
     {
-        Vector2Int position = new Vector2Int((int)organ.lattice.position.x, (int)organ.lattice.position.y);
+        Vector2Int position = new Vector2Int((int)organ.atLattice.position.x, (int)organ.atLattice.position.y);
         
         if (organPositions.Contains(position) == false && organ.isPlanted == true)
         {
