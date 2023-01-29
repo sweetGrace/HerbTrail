@@ -11,15 +11,15 @@ TagManager:
   - 
   - Water
   - UI
-  - ground
-  - groundroot-branch
-  - groundtwig
-  - groundfruit
-  - skyroot
-  - skyfruit
-  - skybranch
-  - skytwig
-  - ourUI
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -40,4 +40,28 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ground
+    uniqueID: 4147780259
+    locked: 0
+  - name: ground-root
+    uniqueID: 1915459655
+    locked: 0
+  - name: ground-branch&twig
+    uniqueID: 4190289721
+    locked: 0
+  - name: ground-fruit
+    uniqueID: 4086942371
+    locked: 0
+  - name: sky-root
+    uniqueID: 1588160835
+    locked: 0
+  - name: sky-fruit
+    uniqueID: 3959610901
+    locked: 0
+  - name: sky-branch&twig
+    uniqueID: 459008095
+    locked: 0
+  - name: ui
+    uniqueID: 1439884061
     locked: 0
