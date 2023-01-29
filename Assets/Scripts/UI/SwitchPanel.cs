@@ -5,25 +5,16 @@ using UnityEngine.UI;
 
 public class SwitchPanel : MonoBehaviour
 {
-    Button upButton,downButton;
+    Button switchButton;
     
     private void Awake()
     {
-        upButton = gameObject.transform.GetChild(0).GetComponent<Button>();
-        downButton = gameObject.transform.GetChild(1).GetComponent<Button>();
+        switchButton = gameObject.transform.GetComponent<Button>();
 
-        upButton.onClick.AddListener(delegate ()
+        switchButton.onClick.AddListener(delegate ()
         {
-            downButton.interactable = true;
-            upButton.interactable = false;
             PlayerInfo.Instance.SwitchLayer();
         });
 
-        downButton.onClick.AddListener(delegate ()
-        {
-            upButton.interactable = true;
-            downButton.interactable = false;
-            PlayerInfo.Instance.SwitchLayer();
-        });
     }
 }

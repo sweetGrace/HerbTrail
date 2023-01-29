@@ -29,7 +29,14 @@ public class SelectTile : MonoBehaviour
 
     Vector3Int GetMousePosition()
     {
+        int x = 0;
+        int y = 0;
         Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        return tileMap.WorldToCell(mouseWorldPos);
+        Vector3Int cellPos = tileMap.WorldToCell(mouseWorldPos);
+        x = Mathf.Clamp(cellPos.x,0, Map._maxMap);
+        y = Mathf.Clamp(cellPos.y, 0, Map._maxMap);
+
+        return new Vector3Int(x, y, 0);
+       
     }
 }
