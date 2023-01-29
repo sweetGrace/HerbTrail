@@ -60,12 +60,17 @@ public class Map : MonoBehaviour
     public void GenerateOrgansOnMap()
     {
         generateOrganList.Clear();
-        plantSet.ForEach(p => p.plantOrgans.ForEach(q => generateOrganList.AddRange(q.spreadOrgans
-        .Where(r => r.isPlanted == false && latticeMap[Convert.ToInt32(r.atLattice.position.x), Convert.ToInt32(r.atLattice.position.y)].ground.type != GroundType.seawater
-        && latticeMap[Convert.ToInt32(r.atLattice.position.x), Convert.ToInt32(r.atLattice.position.y)].plantOrgans
-        .Where(s => s.layer == r.layer).ToList().Count == 0 && (generateOrganList.Where(t => t.layer == r.layer &&
-        generateOrganList.Where(u => Convert.ToInt32(u.atLattice.position.x) == Convert.ToInt32(r.atLattice.position.x) &&
-        Convert.ToInt32(u.atLattice.position.y) == Convert.ToInt32(r.atLattice.position.y)).ToList().Count == 0).ToList().Count == 0)))));
+        plantSet.ForEach(p => p.plantOrgans.Where(w => w.isGenerating == false).ToList().ForEach(
+            q => generateOrganList.AddRange(
+                q.spreadOrgans.Where(r => 
+                    r.isPlanted == false && 
+                    latticeMap[Convert.ToInt32(r.atLattice.position.x), Convert.ToInt32(r.atLattice.position.y)].ground.type != GroundType.seawater && 
+                    latticeMap[Convert.ToInt32(r.atLattice.position.x), Convert.ToInt32(r.atLattice.position.y)].plantOrgans.Where(s => s.layer == r.layer).ToList().Count == 0 && 
+                    generateOrganList.Where(t => 
+                        t.layer == r.layer &&
+                        generateOrganList.Where(u => 
+                            Convert.ToInt32(u.atLattice.position.x) == Convert.ToInt32(r.atLattice.position.x) &&
+                            Convert.ToInt32(u.atLattice.position.y) == Convert.ToInt32(r.atLattice.position.y)).ToList().Count == 0).ToList().Count == 0).ToList())));
     }
     public void GeneratePlantsOnMap()
     {

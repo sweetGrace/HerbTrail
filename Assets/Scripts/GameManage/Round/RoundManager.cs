@@ -68,6 +68,7 @@ public class RoundManager : MonoBehaviour {
             p.plant.plantOrgans.Remove(p);
         } );
         SoundManager.Instance.PlaySingle(ClipsType.plantGrow);
+        Map.Instance.GenerateOrgansOnMap();
     }
 
     public void EndCurrentRound() {
