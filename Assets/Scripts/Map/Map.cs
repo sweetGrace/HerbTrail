@@ -90,7 +90,7 @@ public class Map : MonoBehaviour
                 Debug.LogError("Error at map.GeneratePlantsOnMap:nowhere to plant on 1 round");
             else
             {
-                int r = new System.Random().Next(planeList.Count);
+                int r = UnityEngine.Random.Range(0, planeList.Count - 1);//new System.Random().Next(planeList.Count);
                 Plant tmpPlant = new Plant();
                 tmpPlant.InitMe(PlantType.platformTree);
                 Map.Instance.plantSet.Add(tmpPlant);
@@ -108,8 +108,8 @@ public class Map : MonoBehaviour
             {
                 if (latticeMap[i, j].ground.type == GroundType.plain)
                 {
-                    System.Random random = new System.Random();
-                    double t = random.NextDouble();
+                    //System.Random random = new System.Random();
+                    double t = UnityEngine.Random.Range(0f, 1f);
                     if (t < _pTreePossibility)
                     {
                         Plant tmpPlant = new Plant();
@@ -190,8 +190,8 @@ public class Map : MonoBehaviour
                     // threesome
                     else if (a1 + a2 + a3 == 3 || a1 + a4 + a7 == 3 || a3 + a6 + a9 == 3 || a7 + a8 + a9 == 3)
                     {
-                        System.Random random = new System.Random();
-                        if (random.NextDouble() < _P)
+                        //System.Random random = new System.Random();
+                        if (UnityEngine.Random.Range(0f, 1f) < _P)
                         {
                             generateWaterList.Add(latticeMap[i, j]);
                         }
@@ -227,9 +227,9 @@ public class Map : MonoBehaviour
     public void HarvestPlant(Lattice lattice, PlantOrgan morgan = null)
     {
         bool flag = true;//to judge if a second floor fall
-        if (lattice == morgan.lattice)
+        if (morgan)
         {
-            if (morgan)
+            if (lattice == morgan.lattice)
             {
                 if (morgan.layer == 2 || morgan.OrganType == PlantOrganType.fruit)
                 {

@@ -46,9 +46,9 @@ public class RoundManager : MonoBehaviour {
     }
     public void StartNextRound() {
         _currentRound++;
+        InfoPanel.Instance.UpdateHungerAndCost();
         Map.Instance.GenerateWaterOnMap();
         Map.Instance.GeneratePlantsOnMap();
-        if (CreateRange.Instance == null) Debug.Log(111);
         CreateRange.Instance.CreateWarningRange();
         Map.Instance.generateOrganList.Where(q => q.layer == 1).ToList().ForEach(p => {
             Destroy(p.gameObject);
