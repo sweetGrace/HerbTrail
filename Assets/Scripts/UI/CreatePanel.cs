@@ -47,17 +47,18 @@ public class CreatePanel : MonoBehaviour
 
             if (harvestPanel == null && transform.Find("HarvestPanel(Clone)") == null && gameObject.activeSelf)
             {
+                harvestPanel = Instantiate(panel, transform);
+                harvestPanel.transform.position = worldPosition;
+                harvestPanel.transform.localScale = Vector3.zero;
                 //根据地形生成收获/信息界面
-                switch(selectedLattice.ground.type)
+                switch (selectedLattice.ground.type)
                 {
+                    
                     case GroundType.plain:
                         {
                             harvestPanel.transform.Find("TerrianText").GetComponent<Text>().text = "平原";
                             harvestPanel.transform.Find("FertilityText").GetComponent<Text>().text = "肥力等级：" + selectedLattice.ground.fertilityDegree.ToString();
                             currentLayerOrgans = IsSameLayer(selectedLattice);
-                            harvestPanel = Instantiate(panel, transform);
-                            harvestPanel.transform.position = worldPosition;
-                            harvestPanel.transform.localScale = Vector3.zero;
                             StartCoroutine(ShowPanel());
                             CreateHarvestPanel();
                             break;
@@ -65,7 +66,7 @@ public class CreatePanel : MonoBehaviour
                     case GroundType.seawater:
                         {
                             harvestPanel.transform.Find("TerrianText").GetComponent<Text>().text = "海域";
-                            Destroy(harvestPanel.transform.Find("FertilityText"));
+                            Destroy(harvestPanel.transform.Find("FertilityText").gameObject);
                             break;
                         }
                     default:
