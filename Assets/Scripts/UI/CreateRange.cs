@@ -16,7 +16,7 @@ public class CreateRange: MonoBehaviour
 
     public static CreateRange Instance = null;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance != null)
         {

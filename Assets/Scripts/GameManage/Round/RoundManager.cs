@@ -48,6 +48,7 @@ public class RoundManager : MonoBehaviour {
         _currentRound++;
         Map.Instance.GenerateWaterOnMap();
         Map.Instance.GeneratePlantsOnMap();
+        if (CreateRange.Instance == null) Debug.Log(111);
         CreateRange.Instance.CreateWarningRange();
         Map.Instance.generateOrganList.Where(q => q.layer == 1).ToList().ForEach(p => {
             Destroy(p.gameObject);
