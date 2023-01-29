@@ -2271,8 +2271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilemap: {fileID: 1928719366}
-  seawaterTile: {fileID: 11400000, guid: 8f60359afdaf973409261254eb344073, type: 2}
-  plainTile: {fileID: 11400000, guid: 570401ccddd402c47a264656b791bc9d, type: 2}
+  seawaterTile: {fileID: 11400000, guid: 570401ccddd402c47a264656b791bc9d, type: 2}
+  plainTile: {fileID: 11400000, guid: ccd7fa4d6bbb1ec4da8df580f1f311a9, type: 2}
   plantSet: []
   generateOrganList: []
   generateWaterList: []
