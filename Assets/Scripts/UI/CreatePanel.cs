@@ -66,7 +66,8 @@ public class CreatePanel : MonoBehaviour
                     case GroundType.seawater:
                         {
                             harvestPanel.transform.Find("TerrianText").GetComponent<Text>().text = "∫£”Ú";
-                            Destroy(harvestPanel.transform.Find("FertilityText").gameObject);
+                            harvestPanel.transform.Find("FertilityText").GetComponent<Text>().text = " ";
+                            StartCoroutine(ShowPanel());
                             break;
                         }
                     default:

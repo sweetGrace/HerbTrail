@@ -16,14 +16,14 @@ public class SwitchPanel : MonoBehaviour
         {
             downButton.interactable = true;
             upButton.interactable = false;
-            //PlayerInfo.Instance.SwitchLayer();
+            PlayerInfo.Instance.SwitchLayer();
         });
 
         downButton.onClick.AddListener(delegate ()
         {
             upButton.interactable = true;
             downButton.interactable = false;
-            //PlayerInfo.Instance.SwitchLayer();
+            PlayerInfo.Instance.SwitchLayer();
         });
     }
 }

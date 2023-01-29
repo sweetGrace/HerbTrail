@@ -41,11 +41,14 @@ public class CreateRange: MonoBehaviour
 
     public void DeleteWarningRange()
     {
-        foreach(Image i in ranges)
+        if(ranges != null)
         {
-            Destroy(i.gameObject);
+            foreach (Image i in ranges)
+            {
+                Destroy(i.gameObject);
+            }
+            ranges.Clear();
         }
-        ranges.Clear();
     }
 
 

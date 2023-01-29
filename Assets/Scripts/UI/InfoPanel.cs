@@ -9,7 +9,7 @@ public class InfoPanel : MonoBehaviour
 
     Text hungerText, costText;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance != null)
         {

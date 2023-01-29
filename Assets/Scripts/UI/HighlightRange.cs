@@ -14,10 +14,10 @@ public class HighlightRange : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public List<Vector2Int> positions;
 
-    private void Start()
-    {
-        Debug.Log(this.gameObject.name);
-    }
+    //private void Start()
+    //{
+    //    Debug.Log(this.gameObject.name);
+    //}
 
     public void OnPointerEnter(PointerEventData eventData)
     {
