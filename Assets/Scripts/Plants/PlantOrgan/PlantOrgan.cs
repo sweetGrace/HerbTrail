@@ -205,6 +205,8 @@ public abstract class PlantOrgan : MonoBehaviour
         ClearMe();
     }
     void Start() {
+        spreadOrgans = new List<PlantOrgan>();
+        twigsList = new List<Twig>();
         statePicRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         this.Id = _IdCount++;
         this.resources = resourcesList.Where(p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0];

@@ -136,6 +136,8 @@ public class Fruit : PlantOrgan
 */
 #endregion
     private void Start() {
+        spreadOrgans = new List<PlantOrgan>();
+        twigsList = new List<Twig>();
         this.currentNutrient = 0;
         this.periodCount = 0;
         this.resources = resourcesList.Where(p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0];

@@ -77,6 +77,8 @@ public class Root : PlantOrgan
         return generateList;
     }
     private void Start() {
+        spreadOrgans = new List<PlantOrgan>();
+        twigsList = new List<Twig>();
         this.Id = _IdCount++;
         this.resources = resourcesList.Where(p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0];
         statePicRenderer = this.gameObject.GetComponent<SpriteRenderer>();

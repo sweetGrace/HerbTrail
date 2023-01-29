@@ -37,24 +37,9 @@ public class PlayerInfo : MonoBehaviour
         Action<int, int> SwitchTransparent = (a, b) =>{//a becomes transparent and b becomes opposite
             Map.Instance.plantSet.ForEach(p => {
                 p.plantOrgans.Where(q => q.layer == a).ToList()
-                .ForEach(r => {
-                    if(r.statePicRenderer == null) 
-                        Debug.Log("null");
-                    if(r.gameObject == null)
-                        Debug.Log("gb null");
-                        r.statePicRenderer = r.gameObject.GetComponent<SpriteRenderer>();
-                    r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, alphaDegree);
-                    });
+                .ForEach(r => r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, alphaDegree));
                 p.plantOrgans.Where(q => q.layer == b).ToList()
-                .ForEach(r =>{
-                    if(r.statePicRenderer == null) 
-                        Debug.Log("null");
-                    if(r.gameObject == null)
-                        Debug.Log("gb null");
-                        r.statePicRenderer = r.gameObject.GetComponent<SpriteRenderer>();
-                    r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, alphaDegree);
-                    });
-                
+                .ForEach(r =>  r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, 1.0f));            
             });
         };
         if(currentLayer == 1){
