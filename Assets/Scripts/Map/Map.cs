@@ -95,10 +95,14 @@ public class Map : MonoBehaviour
                 tmpPlant.InitMe(PlantType.platformTree);
                 Map.Instance.plantSet.Add(tmpPlant);
                 Root tmpRoot = new Root();
-                tmpPlant.plantOrgans.Add(tmpRoot);
                 tmpRoot.InitMe(2, tmpPlant, PlantType.platformTree, null, planeList[r], Vector2.zero, null);
-                PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.platformTree, tilemap.CellToWorld(new Vector3Int(Convert.ToInt32(planeList[r].position.x), Convert.ToInt32(planeList[r].position.y), 0)), Quaternion.identity)
-                .GetComponent<PlantOrgan>().InitMe(tmpRoot);
+                PlantOrgan tmpOrgan = PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.platformTree, tilemap.CellToWorld(new Vector3Int(Convert.ToInt32(planeList[r].position.x), Convert.ToInt32(planeList[r].position.y), 0)), Quaternion.identity)
+                .GetComponent<PlantOrgan>();
+                tmpOrgan.InitMe(tmpRoot);
+                tmpPlant.plantOrgans.Remove(tmpRoot);
+                if(tmpOrgan.statePicRenderer == null)
+                    tmpOrgan.statePicRenderer = tmpOrgan.gameObject.GetComponent<SpriteRenderer>();
+                tmpOrgan.statePicRenderer.color = PlayerInfo.Instance.AlterAlpha(tmpOrgan.statePicRenderer.color, PlayerInfo.alphaDegree);
             }
 
         }
@@ -116,10 +120,14 @@ public class Map : MonoBehaviour
                         tmpPlant.InitMe(PlantType.platformTree);
                         Map.Instance.plantSet.Add(tmpPlant);
                         Root tmpRoot = new Root();
-                        tmpPlant.plantOrgans.Add(tmpRoot);
                         tmpRoot.InitMe(2, tmpPlant, PlantType.platformTree, null, latticeMap[i,j], Vector2.zero, null);
-                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.platformTree, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
-                        .GetComponent<PlantOrgan>().InitMe(tmpRoot);
+                        PlantOrgan tmpOrgan = PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.platformTree, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
+                        .GetComponent<PlantOrgan>();
+                        tmpOrgan.InitMe(tmpRoot);
+                        tmpPlant.plantOrgans.Remove(tmpRoot);
+                        if(tmpOrgan.statePicRenderer == null)
+                            tmpOrgan.statePicRenderer = tmpOrgan.gameObject.GetComponent<SpriteRenderer>();
+                        tmpOrgan.statePicRenderer.color = PlayerInfo.Instance.AlterAlpha(tmpOrgan.statePicRenderer.color, PlayerInfo.alphaDegree);
                     }
                     else if (t < _pTreePossibility + _oThornPossibility)
                     {
@@ -127,10 +135,11 @@ public class Map : MonoBehaviour
                         tmpPlant.InitMe(PlantType.obstacleThorn);
                         Map.Instance.plantSet.Add(tmpPlant);
                         Root tmpRoot = new Root();
-                        tmpPlant.plantOrgans.Add(tmpRoot);
                         tmpRoot.InitMe(1, tmpPlant, PlantType.obstacleThorn, null, latticeMap[i,j], Vector2.zero, null);
-                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.obstacleThorn, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
-                        .GetComponent<PlantOrgan>().InitMe(tmpRoot);
+                        PlantOrgan tmpOrgan = PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.obstacleThorn, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
+                        .GetComponent<PlantOrgan>();
+                        tmpOrgan.InitMe(tmpRoot);
+                        tmpPlant.plantOrgans.Remove(tmpRoot);
                     }
                     else if (t < _pTreePossibility + _oThornPossibility + _hBushPossibility)
                     {
@@ -138,10 +147,11 @@ public class Map : MonoBehaviour
                         tmpPlant.InitMe(PlantType.harvestBush);
                         Map.Instance.plantSet.Add(tmpPlant);
                         Root tmpRoot = new Root();
-                        tmpPlant.plantOrgans.Add(tmpRoot);
                         tmpRoot.InitMe(1, tmpPlant, PlantType.harvestBush, null, latticeMap[i,j], Vector2.zero, null);
-                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestBush, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
-                        .GetComponent<PlantOrgan>().InitMe(tmpRoot);
+                        PlantOrgan tmpOrgan = PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestBush, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
+                        .GetComponent<PlantOrgan>();
+                        tmpOrgan.InitMe(tmpRoot);
+                        tmpPlant.plantOrgans.Remove(tmpRoot);
                     }
                     else if (t < _pTreePossibility + _oThornPossibility + _hBushPossibility + _hVinePossibility)
                     {
@@ -149,10 +159,11 @@ public class Map : MonoBehaviour
                         tmpPlant.InitMe(PlantType.harvestVine);
                         Map.Instance.plantSet.Add(tmpPlant);
                         Root tmpRoot = new Root();
-                        tmpPlant.plantOrgans.Add(tmpRoot);
                         tmpRoot.InitMe(1, tmpPlant, PlantType.harvestVine, null, latticeMap[i,j], Vector2.zero, null);
-                        PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestVine, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
-                        .GetComponent<PlantOrgan>().InitMe(tmpRoot);
+                        PlantOrgan tmpOrgan = PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestVine, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
+                        .GetComponent<PlantOrgan>();
+                        tmpOrgan.InitMe(tmpRoot);
+                        tmpPlant.plantOrgans.Remove(tmpRoot);
                     }
                 }
             }

@@ -42,10 +42,12 @@ public class Fruit : PlantOrgan
         copyMe.fatherTwig?.InitMe(copyMe.fatherNode);
         this.layer = copyMe.layer;
         this.plant = copyMe.plant;
-        this.plant.plantOrgans.Add(this);
+        if(!this.plant.plantOrgans.Contains(this))
+            this.plant.plantOrgans.Add(this);
         this.fatherNode = copyMe.fatherNode;
         this.atLattice = copyMe.atLattice;
-        this.atLattice.plantOrgans.Add(this);
+        if(!this.atLattice.plantOrgans.Contains(this))
+            this.atLattice.plantOrgans.Add(this);
         this.relativeDirection = copyMe.relativeDirection;
         this.type = copyMe.type;
         this.fatherTwig = copyMe.fatherTwig;
@@ -54,10 +56,12 @@ public class Fruit : PlantOrgan
         mfatherTwig?.InitMe(FatherNode);
         this.layer = Layer;
         this.plant = Plant;
-        this.plant.plantOrgans.Add(this);
+        if(!this.plant.plantOrgans.Contains(this))
+            this.plant.plantOrgans.Add(this);
         this.fatherNode = FatherNode;
         this.atLattice = mlattice;
-        this.atLattice.plantOrgans.Add(this);
+        if(!this.atLattice.plantOrgans.Contains(this))
+            this.atLattice.plantOrgans.Add(this);
         this.relativeDirection = mrelativeDirection;
         this.type = mtype;
         this.fatherTwig = mfatherTwig;
@@ -136,5 +140,10 @@ public class Fruit : PlantOrgan
         this.periodCount = 0;
         this.resources = resourcesList.Where(p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0];
         this.Id = _IdCount++;
+        statePicRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        if(isPlanted == true && isGenerating == false){
+            this.spreadOrgans =SpreadPlant();
+            isGenerating = true;
+        }
     }
 }

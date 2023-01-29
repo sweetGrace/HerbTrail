@@ -56,15 +56,16 @@ public class RoundManager : MonoBehaviour {
             PlantOrganFactory.Instance.GeneratePlantOrgan(p.OrganType, p.type,tilemap.CellToWorld(new Vector3Int(Convert.ToInt32(p.atLattice.position.x), Convert.ToInt32(p.atLattice.position.y), 0)), Quaternion.identity)
             .GetComponent<PlantOrgan>().InitMe(p);
             p.twigsList.ForEach(q => q = PlantOrganFactory.Instance.GenerateTwig(p.type, tilemap.CellToWorld(new Vector3Int(Convert.ToInt32(p.atLattice.position.x), Convert.ToInt32(p.atLattice.position.y), 0)), Quaternion.Euler(0, 0, Vector2Quaternion(p.relativeDirection))).GetComponent<Twig>());
-            p.plant.plantOrgans.Add(p);
+            p.plant.plantOrgans.Remove(p);
         } );
         Map.Instance.generateOrganList.Where(q => q.layer == 2).ToList().ForEach(p => {
             Destroy(p.gameObject);
             p?.fatherNode?.twigsList.ForEach(r => r.ChangeStatePic(r.stateSpreadingPics));
             PlantOrganFactory.Instance.GeneratePlantOrgan(p.OrganType, p.type, CreateRange.Instance.CubeTreeTranslate((Vector3)p.atLattice.position), Quaternion.identity)
             .GetComponent<PlantOrgan>().InitMe(p);
+            p.statePicRenderer.color = PlayerInfo.Instance.AlterAlpha(p.statePicRenderer.color, PlayerInfo.alphaDegree);
             p.twigsList.ForEach(q => q = PlantOrganFactory.Instance.GenerateTwig(p.type, CreateRange.Instance.CubeTreeTranslate((Vector3)p.atLattice.position), Quaternion.Euler(0, 0, Vector2Quaternion(p.relativeDirection))).GetComponent<Twig>());
-            p.plant.plantOrgans.Add(p);
+            p.plant.plantOrgans.Remove(p);
         } );
         SoundManager.Instance.PlaySingle(ClipsType.plantGrow);
     }

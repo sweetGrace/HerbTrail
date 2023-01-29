@@ -54,10 +54,12 @@ public abstract class PlantOrgan : MonoBehaviour
         copyMe.fatherTwig?.InitMe(copyMe.fatherNode);
         this.layer = copyMe.layer;
         this.plant = copyMe.plant;
-        this.plant.plantOrgans.Add(this);
+        if(!this.plant.plantOrgans.Contains(this))
+            this.plant.plantOrgans.Add(this);
         this.fatherNode = copyMe.fatherNode;
         this.atLattice = copyMe.atLattice;
-        this.atLattice.plantOrgans.Add(this);
+        if(!this.atLattice.plantOrgans.Contains(this))
+            this.atLattice.plantOrgans.Add(this);
         this.relativeDirection = copyMe.relativeDirection;
         this.type = copyMe.type;
         this.fatherTwig = copyMe.fatherTwig;
@@ -66,10 +68,12 @@ public abstract class PlantOrgan : MonoBehaviour
         mfatherTwig?.InitMe(FatherNode);
         this.layer = Layer;
         this.plant = Plant;
-        this.plant.plantOrgans.Add(this);
+        if(!this.plant.plantOrgans.Contains(this))
+            this.plant.plantOrgans.Add(this);
         this.fatherNode = FatherNode;
         this.atLattice = mlattice;
-        this.atLattice.plantOrgans.Add(this);
+        if(!this.atLattice.plantOrgans.Contains(this))
+            this.atLattice.plantOrgans.Add(this);
         this.relativeDirection = mrelativeDirection;
         this.type = mtype;
         this.fatherTwig = mfatherTwig;

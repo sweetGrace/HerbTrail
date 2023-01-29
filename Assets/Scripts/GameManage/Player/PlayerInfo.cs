@@ -18,6 +18,7 @@ public class PlayerInfo : MonoBehaviour
     public int currentRoundCostResources{ get; private set; } = 10;
     public int layerHeight{ get; private set; } = 10;
     public static PlayerInfo Instance { get; private set; } = null;
+    public static float alphaDegree { get; private set; } = 0.5f;
     public void AddResources(int dif){
         if(resources + dif <= maxResources)
             resources += dif;
@@ -42,7 +43,7 @@ public class PlayerInfo : MonoBehaviour
                     if(r.gameObject == null)
                         Debug.Log("gb null");
                         r.statePicRenderer = r.gameObject.GetComponent<SpriteRenderer>();
-                    r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, 0.3f);
+                    r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, alphaDegree);
                     });
                 p.plantOrgans.Where(q => q.layer == b).ToList()
                 .ForEach(r =>{
@@ -51,7 +52,7 @@ public class PlayerInfo : MonoBehaviour
                     if(r.gameObject == null)
                         Debug.Log("gb null");
                         r.statePicRenderer = r.gameObject.GetComponent<SpriteRenderer>();
-                    r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, 0.3f);
+                    r.statePicRenderer.color = AlterAlpha(r.statePicRenderer.color, alphaDegree);
                     });
                 
             });
