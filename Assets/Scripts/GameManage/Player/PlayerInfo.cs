@@ -15,7 +15,7 @@ public class PlayerInfo : MonoBehaviour
     public int currentHarvestCost{ get; private set; } = 5;
     public int harvestCount{ get; private set; } = 0;
     public int baseRoundCostResources{ get; private set; } = 10;
-    public int currentRoundCostResources{ get; private set; }
+    public int currentRoundCostResources { get; private set; } = 10;
     public int layerHeight{ get; private set; } = 10;
     public static PlayerInfo Instance { get; private set; } = null;
     public void AddResources(int dif){

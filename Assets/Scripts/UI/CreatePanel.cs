@@ -40,6 +40,8 @@ public class CreatePanel : MonoBehaviour
             worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Tilemap tilemap = map.GetComponent<Tilemap>();
             cellPosition = tilemap.WorldToCell(worldPosition);
+            cellPosition.x = Mathf.Clamp(cellPosition.x, 0, Map._maxMap);
+            cellPosition.y = Mathf.Clamp(cellPosition.y, 0, Map._maxMap);
             worldPosition = tilemap.CellToWorld(cellPosition);
 
             selectedLattice = Map.Instance.latticeMap[cellPosition.x, cellPosition.y];
@@ -117,7 +119,10 @@ public class CreatePanel : MonoBehaviour
 
         foreach(PlantOrgan o in currentLayerOrgans)
         {
-            CreateHervestButton(o);
+            if(o != null)
+            {
+                CreateHervestButton(o);
+            }
         }
         
     }
@@ -133,7 +138,8 @@ public class CreatePanel : MonoBehaviour
         {
             range.positions = organPositions;
             organPositions.Clear();
-            harvestText.text = organ.type.ToString() + "'s" + organ.OrganType.ToString();
+            //harvestText.text = organ.type.ToString() + "'s" + organ.OrganType.ToString();
+            harvestText.text = organ.OrganType.ToString();
         }
         else
         {
@@ -156,7 +162,7 @@ public class CreatePanel : MonoBehaviour
 
         foreach(PlantOrgan o in lattice.plantOrgans)
         {
-            if(o.layer==currentLayer)
+            if (o.layer == currentLayer)
             {
                 organs.Add(o);
             }
