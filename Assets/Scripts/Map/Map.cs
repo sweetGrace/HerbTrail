@@ -257,21 +257,28 @@ public class Map : MonoBehaviour
             }
             else//harvest whole lattice
             {
-                foreach (var organ in lattice.plantOrgans)
-                {
-                    if (organ.layer == 2 && (organ.OrganType == PlantOrganType.root || organ.OrganType == PlantOrganType.branch))//second floor is root or branch
-                    {
-                        organ.Harvest();
-                        flag = false;
-                    }
-
-                }
-                if (flag == true)
+                if (lattice.plantOrgans.Count > 0)
                 {
                     foreach (var organ in lattice.plantOrgans)
                     {
-                        organ.Harvest();
+                        if (organ.layer == 2 && (organ.OrganType == PlantOrganType.root || organ.OrganType == PlantOrganType.branch))//second floor is root or branch
+                        {
+                            organ.Harvest();
+                            flag = false;
+                        }
+
                     }
+                    if (flag == true)
+                    {
+                        foreach (var organ in lattice.plantOrgans)
+                        {
+                            organ.Harvest();
+                        }
+                    }
+                }
+                else
+                {
+                    lattice.Watered();
                 }
             }
             //
