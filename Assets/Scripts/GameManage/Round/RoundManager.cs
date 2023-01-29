@@ -46,6 +46,7 @@ public class RoundManager : MonoBehaviour {
     }
     public void StartNextRound() {
         _currentRound++;
+        Map.Instance.GenerateWaterOnMap();
         Map.Instance.GeneratePlantsOnMap();
         CreateRange.Instance.CreateWarningRange();
         Map.Instance.generateOrganList.Where(q => q.layer == 1).ToList().ForEach(p => {
