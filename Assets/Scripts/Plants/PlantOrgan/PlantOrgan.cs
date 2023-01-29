@@ -97,6 +97,8 @@ public abstract class PlantOrgan : MonoBehaviour
         List<PlantOrgan> generateList = new List<PlantOrgan>();
         List<int> probilityList = resourcesList.Where(p => p.Item1 == type).Select(p => p.Item2).ToList();
         int totalProbility = probilityList.Sum();
+        if(totalProbility == 0)
+            return generateList;
         int randomResult = UnityEngine.Random.Range(1000000, 10000000) % totalProbility + 1; 
         for(int i = 0; randomResult > 0 && i <= 4; i++){
             randomResult -= probilityList[i];
@@ -188,7 +190,7 @@ public abstract class PlantOrgan : MonoBehaviour
     {
         if(isPlanted == false)
             return;
-        lattice.ground.TurnPlain();
+        atLattice.ground.TurnPlain();
         if (spreadOrgans.Count()!= 0)
         {
             foreach (PlantOrgan organ in spreadOrgans)
@@ -199,7 +201,7 @@ public abstract class PlantOrgan : MonoBehaviour
         ClearMe();
     }
     void Start() {
-        statePicRenderer = GetComponent<SpriteRenderer>();
+        statePicRenderer = this.gameObject.GetComponent<SpriteRenderer>();
         this.Id = _IdCount++;
         this.resources = resourcesList.Where(p => p.Item1 == this.type).Select( p => p.Item2).ToArray()[0];
         if(isPlanted == true && isGenerating == false){

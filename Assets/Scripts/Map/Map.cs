@@ -10,13 +10,13 @@ public class Map : MonoBehaviour
     //planst generate possbilities
     public static int _maxMap = 64;
     [Range(0, 1)]
-    private double _pTreePossibility = 0.1;
+    private double _pTreePossibility = 0.01;
     [Range(0, 1)]
-    private double _oThornPossibility = 0.3;
+    private double _oThornPossibility = 0.03;
     [Range(0, 1)]
-    private double _hBushPossibility = 0.2;
+    private double _hBushPossibility = 0.02;
     [Range(0, 1)]
-    private double _hVinePossibility = 0.2;
+    private double _hVinePossibility = 0.02;
     private int _initialRange = 5;
     [Range(0, 1)]
     private double _P = 0.5;// water generate probability, the bigger the more possible 
@@ -128,7 +128,7 @@ public class Map : MonoBehaviour
                         Map.Instance.plantSet.Add(tmpPlant);
                         Root tmpRoot = new Root();
                         tmpPlant.plantOrgans.Add(tmpRoot);
-                        tmpRoot.InitMe(2, tmpPlant, PlantType.obstacleThorn, null, latticeMap[i,j], Vector2.zero, null);
+                        tmpRoot.InitMe(1, tmpPlant, PlantType.obstacleThorn, null, latticeMap[i,j], Vector2.zero, null);
                         PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.obstacleThorn, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
                         .GetComponent<PlantOrgan>().InitMe(tmpRoot);
                     }
@@ -139,7 +139,7 @@ public class Map : MonoBehaviour
                         Map.Instance.plantSet.Add(tmpPlant);
                         Root tmpRoot = new Root();
                         tmpPlant.plantOrgans.Add(tmpRoot);
-                        tmpRoot.InitMe(2, tmpPlant, PlantType.harvestBush, null, latticeMap[i,j], Vector2.zero, null);
+                        tmpRoot.InitMe(1, tmpPlant, PlantType.harvestBush, null, latticeMap[i,j], Vector2.zero, null);
                         PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestBush, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
                         .GetComponent<PlantOrgan>().InitMe(tmpRoot);
                     }
@@ -150,7 +150,7 @@ public class Map : MonoBehaviour
                         Map.Instance.plantSet.Add(tmpPlant);
                         Root tmpRoot = new Root();
                         tmpPlant.plantOrgans.Add(tmpRoot);
-                        tmpRoot.InitMe(2, tmpPlant, PlantType.harvestVine, null, latticeMap[i,j], Vector2.zero, null);
+                        tmpRoot.InitMe(1, tmpPlant, PlantType.harvestVine, null, latticeMap[i,j], Vector2.zero, null);
                         PlantOrganFactory.Instance.GeneratePlantOrgan(PlantOrganType.root, PlantType.harvestVine, tilemap.CellToWorld(new Vector3Int(i, j, 0)), Quaternion.identity)
                         .GetComponent<PlantOrgan>().InitMe(tmpRoot);
                     }
@@ -229,7 +229,7 @@ public class Map : MonoBehaviour
         bool flag = true;//to judge if a second floor fall
         if (morgan)
         {
-            if (lattice == morgan.lattice)
+            if (lattice == morgan.atLattice)
             {
                 if (morgan.layer == 2 || morgan.OrganType == PlantOrganType.fruit)
                 {

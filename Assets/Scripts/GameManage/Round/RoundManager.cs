@@ -46,7 +46,7 @@ public class RoundManager : MonoBehaviour {
     }
     public void StartNextRound() {
         _currentRound++;
-        InfoPanel.Instance.UpdateHungerAndCost();
+        //InfoPanel.Instance.UpdateHungerAndCost();
         Map.Instance.GenerateWaterOnMap();
         Map.Instance.GeneratePlantsOnMap();
         CreateRange.Instance.CreateWarningRange();
@@ -74,6 +74,7 @@ public class RoundManager : MonoBehaviour {
         if(PlayerInfo.Instance.resources <= 0)
             ShowOverUI.Instance.Show();
         InfoPanel.Instance.UpdateHungerAndCost();
+        //Map.Instance.plantSet.ForEach(plant => plant.plantOrgans.ForEach(p => );
         Map.Instance.plantSet.ForEach(plant => plant.plantOrgans.Where(organ => organ.isGenerating == false).ToList().ForEach(p => p.spreadOrgans.AddRange(p.SpreadPlant())));
         Map.Instance.plantSet.ForEach(plant => plant.plantOrgans.Where(organ => organ.isGeneratingFruit == false).ToList().ForEach(p => p.spreadOrgans.AddRange(p.GenerateFruits())));
         Map.Instance.plantSet.ForEach(plant => plant.plantOrgans.OfType<Fruit>().ToList().ToList().ForEach(fruit => fruit.GrowingUpdate(fruit.atLattice.ground.fertilityDegree)));

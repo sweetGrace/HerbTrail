@@ -167,7 +167,7 @@ public class CreatePanel : MonoBehaviour
 
     public void RangePosition(PlantOrgan organ)
     {
-        Vector2Int position = new Vector2Int((int)organ.lattice.position.x, (int)organ.lattice.position.y);
+        Vector2Int position = new Vector2Int((int)organ.atLattice.position.x, (int)organ.atLattice.position.y);
         
         if (organPositions.Contains(position) == false && organ.isPlanted == true)
         {
